@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Estabelecimento } from 'src/dominio/estabelecimento/estabelecimento.entidade';
+import { EstabelecimentoORM } from '../entidades/estabelecimento/estabelecimento-orm';
 
 @Module({
     imports: [
@@ -11,11 +11,11 @@ import { Estabelecimento } from 'src/dominio/estabelecimento/estabelecimento.ent
             username: process.env.DATABASE_USER,
             password: process.env.DATABASE_PASSWORD,
             database: process.env.DATABASE_DB,
-            entities: [Estabelecimento],
+            entities: [EstabelecimentoORM],
             dropSchema: true,
             synchronize: true,
         }),
-        TypeOrmModule.forFeature([Estabelecimento])
+        TypeOrmModule.forFeature([EstabelecimentoORM])
     ]
 })
 export class DatabaseModule {}
