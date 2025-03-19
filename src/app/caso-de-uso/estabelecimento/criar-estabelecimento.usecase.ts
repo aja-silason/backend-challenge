@@ -3,8 +3,7 @@ import { UseCase } from '../usecase';
 import { Estabelecimento } from 'src/dominio/estabelecimento/entidade/estabelecimento.entidade';
 import { EstabelecimentoGateway } from 'src/dominio/estabelecimento/gateway/estabelecimento.interface';
 
-@Injectable()
-export class CriarEstabelecimento implements UseCase <any, any> {
+export class CriarEstabelecimento{
   
   public constructor(private readonly estabelecimentoGateway: EstabelecimentoGateway){}
 

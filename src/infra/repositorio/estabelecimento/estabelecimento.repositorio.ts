@@ -5,7 +5,7 @@ import { EstabelecimentoGateway } from "src/dominio/estabelecimento/gateway/esta
 import { Repository } from "typeorm";
 
 @Injectable()
-export class EstabelecimentoRepositorio implements EstabelecimentoGateway {
+export class EstabelecimentoRepositorio {
 
     constructor(
         @InjectRepository(Estabelecimento)
