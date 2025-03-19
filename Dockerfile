@@ -1,4 +1,4 @@
-FROM node:20.11.0-apine3.10
+FROM node:20.11.0-alpine3.19
 
 WORKDIR /app
 
@@ -10,8 +10,8 @@ RUN npm cache clean \
     rm -rf node_modules \
     npm install --frozen-lockfile
 
-COPY . ./app
+COPY . /app
 
 EXPOSE 3003
 
-ENTRPOINT ["npm", "estacionamento:dev"];
+ENTRYPOINT ["npm", "run", "estacionamento:dev"]

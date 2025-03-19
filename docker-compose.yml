@@ -1,7 +1,7 @@
 version: '3.0'
 
 services:
-  api:
+  estacionamento-app:
     build:
       context: .
       dockerfile: Dockerfile
@@ -25,7 +25,7 @@ services:
 
   mysqldb:
     image: mysql:8
-    container_name: mysql-db
+    container_name: mysqldb
     networks:
       - api-networks
     environment:
