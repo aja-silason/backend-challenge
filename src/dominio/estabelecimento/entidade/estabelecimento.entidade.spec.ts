@@ -1,5 +1,5 @@
 import { BadRequestException } from "@nestjs/common";
-import { Estabelecimento, EstabelecimentoProps } from "./estabelecimento.entidade";
+import { Estabelecimento, EstabelecimentoProps } from "./entidade/estabelecimento.entidade";
 
 describe('Teste unitario, estabelecimento', () => {
 
