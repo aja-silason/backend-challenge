@@ -3,21 +3,27 @@ import { Estabelecimento } from 'src/dominio/estabelecimento/entidade/estabeleci
 import { EstabelecimentoGateway } from 'src/dominio/estabelecimento/gateway/estabelecimento.interface';
 import { EstabelecimentoRepositorio } from 'src/infra/repositorio/estabelecimento/estabelecimento.repositorio';
 
-export class CriarEstabelecimento implements UseCase<any, any>{
+export class ListarEstabelecimento implements UseCase<any, any>{
   
   public constructor(private readonly estabelecimentoGateway: EstabelecimentoRepositorio){}
 
   public static create(estabelecimentoGateway: EstabelecimentoRepositorio){
-    return new CriarEstabelecimento(estabelecimentoGateway);
+    return new ListarEstabelecimento(estabelecimentoGateway);
   }
 
-  public async execute({nome, telefone, qtd_vagas_carros, qtd_vagas_motos}: any): Promise<any> {
-    
-    const estabelecimento = Estabelecimento?.create({nome, telefone, qtd_vagas_carros, qtd_vagas_motos});
+  public async execute(){
 
-    await this.estabelecimentoGateway?.create(estabelecimento);
-    
+    try {
+      const estabelecimento = await this.estabelecimentoGateway?.find();    
   
+      return estabelecimento;
+      
+    } catch (error) {
+
+      throw new Error(error?.message);
+      
+    }
+
   }
 
 

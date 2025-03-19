@@ -1,21 +1,20 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { CriarEstabelecimento } from "src/app/caso-de-uso/estabelecimento/criar-estabelecimento.usecase";
+import { ListarEstabelecimento } from "src/app/caso-de-uso/estabelecimento/listar-estabelecimento.usecase";
 import { Estabelecimento } from "src/dominio/estabelecimento/entidade/estabelecimento.entidade";
-import { EstabelecimentoGateway } from "src/dominio/estabelecimento/gateway/estabelecimento.interface";
-import { EstabelecimentoORM } from "src/dominio/estabelecimento/model/estabelecimento.model";
-import { DatabaseModule } from "src/infra/database/database.module";
-import { CriarEstabelecimentoController } from "src/infra/http/estabelecimento/estabelecimento.controller";
+import { CriarEstabelecimentoController } from "src/infra/http/estabelecimento/criar-estabelecimento.controller";
+import { ListarEstabelecimentoController } from "src/infra/http/estabelecimento/listar-estabelecimento.controller";
 import { EstabelecimentoRepositorio } from "src/infra/repositorio/estabelecimento/estabelecimento.repositorio";
 
 @Module({
     imports: [
         TypeOrmModule.forFeature([Estabelecimento])
     ],
-    controllers: [CriarEstabelecimentoController],
+    controllers: [CriarEstabelecimentoController, ListarEstabelecimentoController],
     
-    providers: [EstabelecimentoRepositorio, CriarEstabelecimento],
-        
+    providers: [EstabelecimentoRepositorio, CriarEstabelecimento, ListarEstabelecimento],
+
 })
 
 export class EstabelecimentoModule {}

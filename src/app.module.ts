@@ -6,7 +6,11 @@ import { DatabaseModule } from './infra/database/database.module';
 import { EstabelecimentoModule } from './infra/module/estabelecimento/estabelecimento.module';
 
 @Module({
-  imports: [ConfigureModule, DatabaseModule, EstabelecimentoModule],
+  imports: [
+    ConfigureModule,
+    DatabaseModule,
+    EstabelecimentoModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

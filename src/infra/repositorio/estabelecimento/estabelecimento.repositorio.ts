@@ -5,7 +5,7 @@ import { EstabelecimentoGateway } from "src/dominio/estabelecimento/gateway/esta
 import { Repository } from "typeorm";
 
 @Injectable()
-export class EstabelecimentoRepositorio {
+export class EstabelecimentoRepositorio implements EstabelecimentoGateway {
 
     constructor(
         @InjectRepository(Estabelecimento)
@@ -17,12 +17,11 @@ export class EstabelecimentoRepositorio {
     }
 
     async find(): Promise<Estabelecimento[]> {
-        const estabelecimento = await this.estabelicimentoGateway.find();
-        return estabelecimento;
+        return await this.estabelicimentoGateway.find();
     }
 
     async finOne(id: string | any): Promise<Estabelecimento | any> {
-        const estabelecimento = await this.estabelicimentoGateway.findOne(id);
+        return await this.estabelicimentoGateway.findOne(id);
     }
 
     async update(id: string, estabelecimentoUpdated: Estabelecimento): Promise<void> {
@@ -30,9 +29,7 @@ export class EstabelecimentoRepositorio {
     }
 
     async delete(id: string): Promise<void> {
-        
-        this.estabelicimentoGateway.delete(id);
-        
+        await this.estabelicimentoGateway.delete(id);
     }
 
 }
