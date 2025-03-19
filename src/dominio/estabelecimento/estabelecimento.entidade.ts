@@ -1,3 +1,4 @@
+import { BadRequestException } from "@nestjs/common";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 type EstabelecimentoProps = {
@@ -13,6 +14,23 @@ export class Estabelecimento {
     public constructor(private readonly props: EstabelecimentoProps){}
 
     public static create(props: EstabelecimentoProps){
+
+        const incommingDatas: EstabelecimentoProps = {
+            nome: props.nome,
+            qtd_vagas_carros: props.qtd_vagas_motos,
+            qtd_vagas_motos: props.qtd_vagas_motos,
+            telefone: props.telefone
+        }
+
+        const isValidate: Array<keyof EstabelecimentoProps> = ["nome", "telefone", "qtd_vagas_carros", "qtd_vagas_motos"];
+
+        for(const key of isValidate){
+            const value = incommingDatas[key];
+            if(value == null || value == undefined) {
+                throw new BadRequestException(`${key} precisa ser adicionado`);
+            }
+        }
+
         return new Estabelecimento({
             id: crypto.randomUUID(),
             nome: props.nome,
@@ -20,6 +38,10 @@ export class Estabelecimento {
             qtd_vagas_carros: props.qtd_vagas_carros,
             qtd_vagas_motos: props.qtd_vagas_motos
         });
+    }
+
+    public get with(){
+        return this.props;
     }
 
 }
