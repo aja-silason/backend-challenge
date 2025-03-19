@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './infra/http/app/app.controller';
-import { AppService } from './caso-de-uso/app.service';
+import { AppService } from './app/caso-de-uso/app.service';
 import { ConfigureModule } from './infra/configure/configure.module';
 import { DatabaseModule } from './infra/database/database.module';
 

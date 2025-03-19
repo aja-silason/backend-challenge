@@ -11,7 +11,7 @@ export type EstabelecimentoProps = {
 
 export class Estabelecimento {
 
-    public constructor(private readonly props: EstabelecimentoProps){}
+    public constructor(private props: EstabelecimentoProps){}
 
     public static create(props: EstabelecimentoProps, id?: string){
 
