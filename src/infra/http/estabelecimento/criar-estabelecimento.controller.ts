@@ -13,7 +13,7 @@ export class CriarEstabelecimentoController {
 
     const estabelecimento = Estabelecimento?.create(body);
 
-    return this.appService.create(estabelecimento);
+    await this.appService.create(estabelecimento);
 
   }
   

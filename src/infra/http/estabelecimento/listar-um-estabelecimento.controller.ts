@@ -6,7 +6,7 @@ export class ListarUmEstabelecimentoController {
   constructor(private readonly appService: EstabelecimentoRepositorio) {}
 
   @Get(':id')
-   async findOne(@Param('id', new ParseUUIDPipe()) id: number){
+   async findOne(@Param() id: number){
     return await this.appService.findOneByOrFail(id);
   }
 }

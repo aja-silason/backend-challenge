@@ -8,7 +8,7 @@ export class DeletarEstabelecimentoController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-   async findOne(@Param('id', new ParseUUIDPipe()) id: number){
-    return await this.appService.delete(id);
+   async findOne(@Param() id: number){
+    await this.appService.delete(id);
   }
 }
