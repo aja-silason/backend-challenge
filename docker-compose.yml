@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: estacionamento-app,
+    entrypoint : sh -c 'npm install --frozen-lockfile && npm run estacionamento:dev'
     depends_on:
       - mysqldb
     environment:
@@ -32,3 +33,10 @@ services:
       MYSQL_DATABASE: estacionamento
     ports:
       - "${MYSQLPORT}:${MYSQLPORT}"
+    volumes:
+      - mysqldatabase:/data/db
+
+networks:
+  api-networks:
+volumes:
+  mysqldatabase:
