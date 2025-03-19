@@ -1,21 +1,18 @@
 import { UseCase } from '../usecase';
 import { EstabelecimentoRepositorio } from 'src/infra/repositorio/estabelecimento/estabelecimento.repositorio';
 
-export class ListarEstabelecimento implements UseCase<any, any>{
+export class DeletarEstabelecimento implements UseCase<any, any>{
   
   public constructor(private readonly estabelecimentoGateway: EstabelecimentoRepositorio){}
 
   public static create(estabelecimentoGateway: EstabelecimentoRepositorio){
-    return new ListarEstabelecimento(estabelecimentoGateway);
+    return new DeletarEstabelecimento(estabelecimentoGateway);
   }
 
-  public async execute(){
+  public async execute(id: number){
 
     try {
-      const estabelecimento = await this.estabelecimentoGateway?.find();    
-  
-      return estabelecimento;
-      
+      await this.estabelecimentoGateway?.delete(id);    
     } catch (error) {
 
       throw new Error(error?.message);
@@ -23,6 +20,5 @@ export class ListarEstabelecimento implements UseCase<any, any>{
     }
 
   }
-
 
 }

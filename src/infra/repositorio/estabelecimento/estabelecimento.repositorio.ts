@@ -22,7 +22,7 @@ export class EstabelecimentoRepositorio {
         return await this.estabelicimentoRps.find();
     }
 
-    async findOneByOrFail(id: string | any){
+    async findOneByOrFail(id: number | any){
         try{
             return await this.estabelicimentoRps.findOneByOrFail(id);
         } catch (error) {
@@ -30,13 +30,13 @@ export class EstabelecimentoRepositorio {
         }
     }
 
-    async update(id: string, estabelecimentoUpdated: EstabelecimentoORM){
+    async update(id: number, estabelecimentoUpdated: EstabelecimentoORM){
         const estabelecimento = await this.findOneByOrFail(id);
         this.estabelicimentoRps.merge(estabelecimento, estabelecimentoUpdated);
         return await this.estabelicimentoRps.save(estabelecimento);
     }
 
-    async deleteById(id: string){
+    async delete(id: number){
         await this.findOneByOrFail(id);
         await this.estabelicimentoRps.softDelete(id);
     }
