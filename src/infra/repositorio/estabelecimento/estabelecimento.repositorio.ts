@@ -15,18 +15,17 @@ export class EstabelecimentoRepositorio {
     async create(estabelecimento) {
 
         return await this.estabelicimentoRps.save(this.estabelicimentoRps.create(estabelecimento));
-        
     }
 
     async find() {
-        return await this.estabelicimentoRps.find();
+        return await this.estabelicimentoRps.find({withDeleted: true});
     }
 
     async findOneByOrFail(id: number | any){
         try{
             return await this.estabelicimentoRps.findOneByOrFail(id);
         } catch (error) {
-            throw new NotFoundException(error?.message);
+            throw new NotFoundException(error?.error);
         }
     }
 
@@ -36,16 +35,12 @@ export class EstabelecimentoRepositorio {
         return await this.estabelicimentoRps.save(estabelecimento);
     }
 
-    async delete(id: number){
-        const estabelecimento = await this.findOneByOrFail({where: {id}});
-
+    async delete(id: number | any){
+        const estabelecimento = await this.findOneByOrFail(id);
         if(!estabelecimento) {
             throw new NotFoundException(`id ${id} não encontrado`);
         }
-        estabelecimento.deletedAt = new Date();
-        await this.estabelicimentoRps.save(estabelecimento);
-
-        //await this.estabelicimentoRps.softDelete(id);
+        await this.estabelicimentoRps.delete(id);
     }
 
 }

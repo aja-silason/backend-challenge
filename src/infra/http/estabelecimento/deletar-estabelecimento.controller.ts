@@ -1,4 +1,5 @@
 import { Controller, Delete, HttpCode, HttpStatus, Param, ParseUUIDPipe } from "@nestjs/common";
+import { response } from "express";
 import { DeletarEstabelecimento } from "src/app/caso-de-uso/estabelecimento/deletar-estabelecimento.usecase";
 import { EstabelecimentoRepositorio } from "src/infra/repositorio/estabelecimento/estabelecimento.repositorio";
 
@@ -8,7 +9,9 @@ export class DeletarEstabelecimentoController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-   async findOne(@Param() id: number){
-    await this.appService.delete(id);
+   async delete(@Param() id: number){
+
+      await this.appService.delete(id);
+
   }
 }

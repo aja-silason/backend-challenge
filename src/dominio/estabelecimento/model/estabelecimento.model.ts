@@ -24,7 +24,7 @@ export class EstabelecimentoORM {
     @Column({name: "updated_at", type: 'datetime', nullable: true, default: null})
     updatedAt: Date
 
-    @Column({name: "delete", type: 'datetime', nullable: true, default: null})
+    @Column({name: "deleted_at", type: 'datetime', nullable: true, default: null})
     deletedAt: Date
 
 }
