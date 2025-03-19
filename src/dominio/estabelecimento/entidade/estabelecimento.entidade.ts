@@ -26,7 +26,7 @@ export class Estabelecimento {
     
           for(const key of isValidate){
               const value = incommingDatas[key];
-              if(value == null || value == undefined) {
+              if(value == null || value == undefined || value == 0 || incommingDatas?.nome?.trim() == "" ) {
                   throw new BadRequestException(`${key} precisa ser adicionado`);
               }
           }    
