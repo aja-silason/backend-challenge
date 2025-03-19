@@ -15,6 +15,22 @@ export class Estabelecimento {
 
     public static create(props: EstabelecimentoProps, id?: string){
 
+        const incommingDatas: EstabelecimentoProps = {
+            nome: props.nome,
+            qtd_vagas_carros: props.qtd_vagas_carros,
+            qtd_vagas_motos: props.qtd_vagas_motos,
+            telefone: props.telefone
+          }
+    
+          const isValidate: Array<keyof EstabelecimentoProps> = ["nome", "telefone", "qtd_vagas_carros", "qtd_vagas_motos"];
+    
+          for(const key of isValidate){
+              const value = incommingDatas[key];
+              if(value == null || value == undefined) {
+                  throw new BadRequestException(`${key} precisa ser adicionado`);
+              }
+          }    
+
 
         return new Estabelecimento({
             nome: props.nome,

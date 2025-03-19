@@ -1,5 +1,4 @@
-import { Controller, Get, Param } from "@nestjs/common";
-import { ListarEstabelecimento } from "src/app/caso-de-uso/estabelecimento/listar-estabelecimento.usecase";
+import { Controller, Get, Param, ParseUUIDPipe } from "@nestjs/common";
 import { EstabelecimentoRepositorio } from "src/infra/repositorio/estabelecimento/estabelecimento.repositorio";
 
 @Controller('estabelecimento')
@@ -7,7 +6,7 @@ export class ListarUmEstabelecimentoController {
   constructor(private readonly appService: EstabelecimentoRepositorio) {}
 
   @Get(':id')
-   async findOne(@Param() id: number){
+   async findOne(@Param('id', new ParseUUIDPipe()) id: number){
     return await this.appService.findOneByOrFail(id);
   }
 }
