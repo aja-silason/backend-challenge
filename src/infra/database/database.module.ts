@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { EstabelecimentoORM } from '../repositorio/estabelecimento/estabelecimento-orm';
+import { EstabelecimentoORM } from '../../dominio/estabelecimento/model/estabelecimento.model';
 
 @Module({
     imports: [
