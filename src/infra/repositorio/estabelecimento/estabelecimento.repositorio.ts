@@ -1,6 +1,5 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Estabelecimento } from "src/dominio/estabelecimento/entidade/estabelecimento.entidade";
 import { EstabelecimentoORM } from "src/dominio/estabelecimento/model/estabelecimento.model";
 import { Repository } from "typeorm";
 
