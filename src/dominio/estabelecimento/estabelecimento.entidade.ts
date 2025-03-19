@@ -1,23 +1,25 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+type EstabelecimentoProps = {
+    id?: string,
+    nome: string,
+    telefone: number,
+    qtd_vagas_carros: number,
+    qtd_vagas_motos: number
+}
+
 export class Estabelecimento {
 
-    @PrimaryGeneratedColumn({type: 'int'})
-    id: number;
+    public constructor(private readonly props: EstabelecimentoProps){}
 
-    @Column({type: 'varchar'})
-    nome: string;
-
-    @Column({type: 'varchar'})
-    telefone: string;
-
-    @Column({type: 'int'})
-    qtd_vagas_motos: number;
-    
-    @Column({type: 'int'})
-    qtd_vagas_carros: number
-
-
+    public static create(props: EstabelecimentoProps){
+        return new Estabelecimento({
+            id: crypto.randomUUID(),
+            nome: props.nome,
+            telefone: props.telefone,
+            qtd_vagas_carros: props.qtd_vagas_carros,
+            qtd_vagas_motos: props.qtd_vagas_motos
+        });
+    }
 
 }
