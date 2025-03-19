@@ -1,40 +1,50 @@
 version: '3.0'
 
 services:
+
+  mysqldb:
+      image: mysql:8
+      container_name: mysqldb
+      networks:
+        - api-networks
+      environment:
+        MYSQL_ROOT_PASSWORD: root,
+        MYSQL_DATABASE: estacionamento,
+        MYSQL_USER: root,
+        MYSQL_PASSWORD: password
+      ports:
+        - "3306:3306"
+      volumes:
+        - mysqldatabase:/data/db
+
   estacionamento-app:
     build:
+    
       context: .
+    
       dockerfile: Dockerfile
+    
     container_name: estacionamento-app
-    entrypoint : sh -c 'npm install --frozen-lockfile && npm run estacionamento:dev'
+    
+    entrypoint: ["./wait-for-it.sh", "mysqldb:3306", "--", "sh", "-c", "npm install --frozen-lockfile && npm run estacionamento:dev"]
+    
     depends_on:
       - mysqldb
     environment:
-      - DATABASE_HOST=mysqldb
-      - DATABASE_PORT=3306
-      - DATABASE_USER=root
-      - DATABASE_PASSWORD=password
-      - DATABASE_DB=estacionamento
+      DATABASE_HOST: mysqldb
+      DATABASE_PORT: 3306
+      DATABASE_USER: root
+      DATABASE_PASSWORD: root
+      DATABASE_DB: estacionamento
     networks:
       - api-networks
     ports:
-      - ${PORT}:${PORT}
+      - 3003:3003
     volumes:
       - .:/app
       - /app/node_modules
 
-  mysqldb:
-    image: mysql:8
-    container_name: mysqldb
-    networks:
-      - api-networks
-    environment:
-      MYSQL_ROOT_PASSWORD: password,
-      MYSQL_DATABASE: estacionamento
-    ports:
-      - "${MYSQLPORT}:${MYSQLPORT}"
-    volumes:
-      - mysqldatabase:/data/db
+  
 
 networks:
   api-networks:
