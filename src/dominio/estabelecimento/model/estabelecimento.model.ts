@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 
 @Entity({name: 'estabelecimento'})
 export class EstabelecimentoORM {
@@ -18,10 +18,13 @@ export class EstabelecimentoORM {
     @Column({type: 'int'})
     qtd_vagas_carros: number
 
-    @Column({name: "created_at"})
-    createdAt: string
+    @Column({name: "created_at", type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
+    createdAt: Date
 
-    @Column({name: "deleted_at"})
-    deleteddAt: string
+    @Column({name: "updated_at", type: 'datetime', nullable: true, default: null})
+    updatedAt: Date
+
+    @Column({name: "deleted_at", type: 'datetime', nullable: true, default: null})
+    deleteddAt: Date
 
 }

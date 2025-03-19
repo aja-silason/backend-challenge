@@ -1,16 +1,15 @@
 import { Body, Controller, Post } from "@nestjs/common";
-import { CriarEstabelecimento } from "src/app/caso-de-uso/estabelecimento/criar-estabelecimento.usecase";
 import { EstabelecimentoProps } from "src/dominio/estabelecimento/entidade/estabelecimento.entidade";
+import { EstabelecimentoRepositorio } from "src/infra/repositorio/estabelecimento/estabelecimento.repositorio";
 
 @Controller('estabelecimento')
 export class CriarEstabelecimentoController {
-  constructor(private readonly appService: CriarEstabelecimento) {}
+  constructor(private readonly appService: EstabelecimentoRepositorio) {}
 
   @Post()
-  //async create(@Body() {nome, telefone, qtd_vagas_carros, qtd_vagas_motos}: EstabelecimentoProps){
   async create(@Body() body: EstabelecimentoProps){
 
-    return this.appService.execute(body);
+    return this.appService.create(body);
 
   }
   

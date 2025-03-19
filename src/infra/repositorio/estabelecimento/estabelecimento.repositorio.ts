@@ -14,7 +14,6 @@ export class EstabelecimentoRepositorio {
 
     async create(estabelecimento) {
 
-
         return await this.estabelicimentoRps.save(this.estabelicimentoRps.create(estabelecimento));
         
     }
