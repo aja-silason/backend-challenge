@@ -37,8 +37,15 @@ export class EstabelecimentoRepositorio {
     }
 
     async delete(id: number){
-        await this.findOneByOrFail(id);
-        await this.estabelicimentoRps.softDelete(id);
+        const estabelecimento = await this.findOneByOrFail({where: {id}});
+
+        if(!estabelecimento) {
+            throw new NotFoundException(`id ${id} não encontrado`);
+        }
+        estabelecimento.deletedAt = new Date();
+        await this.estabelicimentoRps.save(estabelecimento);
+
+        //await this.estabelicimentoRps.softDelete(id);
     }
 
 }
