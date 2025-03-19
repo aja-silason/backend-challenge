@@ -1,35 +1,45 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Estabelecimento } from "src/dominio/estabelecimento/entidade/estabelecimento.entidade";
-import { EstabelecimentoGateway } from "src/dominio/estabelecimento/gateway/estabelecimento.interface";
+import { EstabelecimentoORM } from "src/dominio/estabelecimento/model/estabelecimento.model";
 import { Repository } from "typeorm";
 
 @Injectable()
-export class EstabelecimentoRepositorio implements EstabelecimentoGateway {
+export class EstabelecimentoRepositorio {
 
     constructor(
-        @InjectRepository(Estabelecimento)
-        private readonly estabelicimentoGateway: Repository<Estabelecimento>
+        @InjectRepository(EstabelecimentoORM)
+        private readonly estabelicimentoRps: Repository<EstabelecimentoORM>
     ){}
 
-    async create(estabelecimento: Estabelecimento): Promise<void> {
-        await this.estabelicimentoGateway.save(estabelecimento);
+    async create(estabelecimento) {
+
+
+        return await this.estabelicimentoRps.save(this.estabelicimentoRps.create(estabelecimento));
+        
     }
 
-    async find(): Promise<Estabelecimento[]> {
-        return await this.estabelicimentoGateway.find();
+    async find() {
+        return await this.estabelicimentoRps.find();
     }
 
-    async finOne(id: string | any): Promise<Estabelecimento | any> {
-        return await this.estabelicimentoGateway.findOne(id);
+    async findOneByOrFail(id: string | any){
+        try{
+            return await this.estabelicimentoRps.findOneByOrFail(id);
+        } catch (error) {
+            throw new NotFoundException(error?.message);
+        }
     }
 
-    async update(id: string, estabelecimentoUpdated: Estabelecimento): Promise<void> {
-        await this.estabelicimentoGateway.update(id, estabelecimentoUpdated);
+    async update(id: string, estabelecimentoUpdated: EstabelecimentoORM){
+        const estabelecimento = await this.findOneByOrFail(id);
+        this.estabelicimentoRps.merge(estabelecimento, estabelecimentoUpdated);
+        return await this.estabelicimentoRps.save(estabelecimento);
     }
 
-    async delete(id: string): Promise<void> {
-        await this.estabelicimentoGateway.delete(id);
+    async deleteById(id: string){
+        await this.findOneByOrFail(id);
+        await this.estabelicimentoRps.softDelete(id);
     }
 
 }

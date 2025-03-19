@@ -8,7 +8,7 @@ export class ListarEstabelecimentoController {
   constructor(private readonly appService: ListarEstabelecimento) {}
 
   @Get()
-    find(){
-      return this.appService.execute();
+   async find(){
+      return await this.appService.execute();
   }
 }

@@ -9,12 +9,12 @@ services:
     container_name: estacionamento-app
     entrypoint: sh -c 'npm install --frozen-lockfile && npm run estacionamento:dev'
     depends_on:
-      - mysqldb
+      - challenge-db-prod
     environment:
-      DATABASE_HOST: mysqldb
-      DATABASE_PORT: 3306
+      DATABASE_HOST: challenge-db-prod
+      DATABASE_PORT: 3308
       DATABASE_USER: root
-      DATABASE_PASSWORD: password
+      DATABASE_PASSWORD: 123
       DATABASE_DB: estacionamento
     networks:
       - api-networks
@@ -25,19 +25,15 @@ services:
       - /app/node_modules
 
 
-  mysqldb:
+  challenge-db-prod:
     image: mysql
-    container_name: mysqldb
+    container_name: challenge-db-prod
     networks:
       - api-networks
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=estacionamento
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=password
-      - MYSQL_TCP_PORT=3306
+      - MYSQL_ROOT_PASSWORD=123
     ports:
-      - "3306:3306"
+      - "3308:3308"
     volumes:
       - mysqldatabase:/data/db
   
