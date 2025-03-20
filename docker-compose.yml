@@ -1,0 +1,44 @@
+version: '3.0'
+
+services:
+
+  estacionamento-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: estacionamento-app
+    entrypoint: sh -c 'npm install --frozen-lockfile && npm run estacionamento:dev'
+    depends_on:
+      - challenge-db-prod
+    environment:
+      DATABASE_HOST: challenge-db-prod
+      DATABASE_PORT: 3308
+      DATABASE_USER: root
+      DATABASE_PASSWORD: 123
+      DATABASE_DB: estacionamento
+    networks:
+      - api-networks
+    ports:
+      - 3003:3003
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+
+  challenge-db-prod:
+    image: mysql
+    container_name: challenge-db-prod
+    networks:
+      - api-networks
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+    ports:
+      - "3308:3308"
+    volumes:
+      - mysqldatabase:/data/db
+  
+
+networks:
+  api-networks:
+volumes:
+  mysqldatabase:
