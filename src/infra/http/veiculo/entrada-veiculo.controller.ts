@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Get, HttpCode, HttpStatus, NotFoundException, Param, Patch } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Get, HttpCode, HttpStatus, NotFoundException, Param, Patch, Post, Put } from "@nestjs/common";
 import { ApiParam, ApiTags } from "@nestjs/swagger";
 import { EntradaSaidaProps, RelatorioEntradaSaida } from "src/dominio/relatorio/entidade/entrada-saida";
 import { Veiculo } from "src/dominio/veiculo/entidade/veiculo.entidade";
@@ -11,7 +11,7 @@ import { VeiculoRepositorio } from "src/infra/repositorio/veiculo/veiculo.reposi
 export class EntradaVeiculoController {
   constructor(private readonly appService: VeiculoRepositorio, private readonly relatorio: RelatorioRepositorio) {}
 
-  @Get(':id/:value')
+  @Patch(':id/:value')
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiParam({name: "id", type: 'string'})
   @ApiParam({name: "value", type: 'string'})
@@ -33,11 +33,18 @@ export class EntradaVeiculoController {
     
     
     const { id: id_veiculo, marca } = carroExiste
+
+    const listaDeCarrosParaRelatorio = await this.relatorio.find();
     
+    const temEntrada = listaDeCarrosParaRelatorio?.filter((item) => item?.id_veiculo == id_veiculo)[0]
+
+    if(temEntrada){
+      throw new BadRequestException(`carro com o id ${id} já está estacionado`)
+    }
+
     const newValues: EntradaSaidaProps = {veiculo: marca, id_veiculo: id_veiculo}
     
     const entrada = RelatorioEntradaSaida.create(newValues)
-    console.log("Value", entrada);
     
     await this.relatorio.criar_entrada(entrada)
 

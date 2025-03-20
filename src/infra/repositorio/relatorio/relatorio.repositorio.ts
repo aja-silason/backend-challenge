@@ -27,7 +27,7 @@ export class RelatorioRepositorio {
     async criar_saida(id: number) {
 
         const existeEntrada = await this.findOneByOrFail(id);
-        
+
         existeEntrada.hora_saida = new Date();
 
         return await this.relatorioRps.save(this.relatorioRps.create(existeEntrada));
