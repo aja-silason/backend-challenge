@@ -19,18 +19,16 @@ export class SpaceController {
 
   @Get()
     async find(){
-    return await this.spaceService.findAll();
+      return await this.spaceService.findAll();
   }
 
   @Get(':id')
   @ApiParam({name: 'id', type: 'number'})
-    async findOne(@Param() id: number){
+    async findOne(@Param('id') id: number){
+
+        return await this.spaceService.finOne(+id);    
     
-        /*
-        return await this.appService.findOneByOrFail(id);
-    
-        */
-    }
+  }
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)

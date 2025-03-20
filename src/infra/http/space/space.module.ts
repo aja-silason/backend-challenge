@@ -8,6 +8,7 @@ import { TypeORMSpaceRepository } from "src/infra/repository/space/space.reposit
 import { SpaceService } from "./space.service";
 import { FindAllSpaceUseCase } from "src/app/usecase/space/findAll.usecase";
 import { FindOneSpaceUseCase } from "src/app/usecase/space/findOneusecase";
+import { DeleteSpaceUsecase } from "src/app/usecase/space/delete.usecase";
 
 @Module({
     imports: [
@@ -20,6 +21,7 @@ import { FindOneSpaceUseCase } from "src/app/usecase/space/findOneusecase";
         CreateSpaceUsecase,
         FindAllSpaceUseCase,
         FindOneSpaceUseCase,
+        DeleteSpaceUsecase,
         {
             provide: SpaceRepository,
             useClass: TypeORMSpaceRepository 
