@@ -9,6 +9,7 @@ export const swaggerConfig = (app: NestExpressApplication): void => {
         .setVersion('0.0.1')
         .addTag("Estacionamento")
         .addTag("Veiculo")
+        .addTag("Parque")
         .build()
 
         const document = SwaggerModule.createDocument(app, config);
