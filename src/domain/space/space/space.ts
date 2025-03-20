@@ -15,35 +15,28 @@ export class SpaceEntity {
 
     public constructor(private props: SpaceProps){}
 
-    public static create(props: SpaceProps, id?: string){
+    public static create(props: SpaceProps, id?: string){   
 
-        const incommingDatas: SpaceProps = {
-            name: props.name,
-            qtd_car_slot: props.qtd_car_slot,
-            qtd_motorcycle_slot: props.qtd_motorcycle_slot,
-            slot_car: props.slot_car,
-            slot_motorcycle: props.slot_motorcycle,
-            telephone: props.telephone
-          }
+        this.validate(props);
+
+        return new SpaceEntity({
+            ...props,
+            slot_car: props.qtd_car_slot,
+            slot_motorcycle: props.qtd_motorcycle_slot,
+    
+        });
+    }
+
+    private static validate(props: SpaceProps){
     
           const isValidate: Array<keyof SpaceProps> = ["name", "telephone", "qtd_car_slot", "qtd_motorcycle_slot"];
     
           for(const key of isValidate){
-              const value = incommingDatas[key];
-              if(value == null || value == undefined || value == 0  || Number(value) < 0 || incommingDatas?.name?.trim() == "" ) {
-                  throw new BadRequestException(`${key} should be add`);
+              const value = props[key];
+              if(value == null || value == undefined || value == 0  || Number(value) < 0 || props.name?.trim() == "" ) {
+                  throw new BadRequestException(`${key} should be add or diferent than 0`);
               }
-          }    
-
-
-        return new SpaceEntity({
-            name: props.name,
-            qtd_car_slot: props.qtd_car_slot,
-            qtd_motorcycle_slot: props.qtd_motorcycle_slot,
-            slot_car: props.slot_car,
-            slot_motorcycle: props.slot_motorcycle,
-            telephone: props.telephone
-        });
+          } 
     }
 
     public get id(){

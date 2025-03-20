@@ -7,13 +7,13 @@ export class CreateSpaceUsecase{
 
   public constructor(private readonly repository: SpaceRepository){}
 
-  public async execute(input: SpaceProps) {
+  public async execute({name, qtd_car_slot, qtd_motorcycle_slot, telephone}: SpaceProps) {
 
     const incommingDatas: SpaceProps = {
-      name: input?.name,
-      qtd_car_slot: input?.qtd_car_slot,
-      qtd_motorcycle_slot: input?.qtd_motorcycle_slot,
-      telephone: input?.telephone
+      name: name,
+      qtd_car_slot: qtd_car_slot,
+      qtd_motorcycle_slot: qtd_motorcycle_slot,
+      telephone: telephone
     }
 
       const space = SpaceEntity?.create(incommingDatas);

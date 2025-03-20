@@ -7,7 +7,7 @@ import { SpaceModule } from '../http/space/space.module';
 @Module({
     imports: [
         TypeOrmModule.forRootAsync({
-            //imports: [ConfigModule],
+            imports: [ConfigModule],
             inject: [ConfigService],
             useFactory: (configService: ConfigService) => ({ 
                 type: 'mysql',
