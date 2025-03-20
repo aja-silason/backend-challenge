@@ -10,10 +10,10 @@ export class RelatorioORM {
     veiculo: string
     
     @Column({type: 'timestamp', default: null})
-    hora_entrada: string
+    hora_entrada: Date
 
     @Column({type: 'timestamp', nullable: true, default: null})
-    hora_saida: string
+    hora_saida: Date
 
     @Column({name: "created_at", type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
     createdAt: Date
