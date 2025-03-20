@@ -51,10 +51,53 @@ http://localhost:3003/ para developer
 ## Para acesso à URL Swagger
 http://localhost:8080/api/docs
   
-## Swagger
-swagger.json << Arquivo encontra-se na Raiz
-  
-```
+
+### Requisitos do teste "Funcionalidades" 🛠️
+
+- **Estabelecimento:** CRUD;
+  Criar um cadastro da empresa com os campos:
+  - Nome;
+  - Endereço;
+  - Telefone;
+  - Quantidade de vagas para motos;
+  - Quantidade de vagas para carros.
+
+  **Todos** os campos são de preenchimento obrigatório.
+
+- **Veículos:** CRUD;
+  Criar um cadastro de veículos com os campos:
+  - Marca;
+  - Modelo;
+  - Cor;
+  - Placa;
+  - Tipo.
+
+  **Todos** os campos são de preenchimento obrigatório.
+
+- **Controle de entrada e saída de veículos.**
+
+---
+
+### Sobre os Requisitos 💻
+
+- A aplicação foi desenvolvida usando **NestJs**;
+- Banco de dados relacional ou não relacional (MySQL);
+- Persistência de dados no banco deverá ser feita utilizando:
+  - **ORMs como TypeORM**;
+- O retorno da API no formato **REST**;
+- As requisições são feitas com os verbos **GET, POST, PUT, PATCH e DELETE**, conforme a melhor prática;
+- Arquitetura de software baseada em **Clean Architecture**;
+---
+
+### Pontos Extras ⭐
+
+- Práticas de modelagem de projeto;
+- Configuração da API com o **Swagger**;
+- Disponibilizar ponto na aplicação para extração de relatórios da aplicação com as seguintes informações:
+  - Sumário da quantidade de entrada e saída;
+  - Sumário da quantidade de entrada e saída de veículos por hora;
+- Publicação da aplicação em algum servidor;
+- Utilização de **Docker** para containerização da aplicação no caso do banco de dados.
 
 ## Contacto
 WhatsApp: +244 044006009
