@@ -3,30 +3,30 @@ import { IsIn, IsNotEmpty, isNotEmpty, IsNumber, IsString } from "class-validato
 
 export class CriarVeiculoDTO {
     
+    @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    @ApiProperty()
-    marca
-
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty()
-    modelo
+    marca: string
 
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    cor
+    modelo: string
 
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    cor: string
+
+    @ApiProperty()
     @IsNumber()
     @IsNotEmpty()
-    @ApiProperty()
-    placa
+    placa: number
 
+    @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    @ApiProperty()
     @IsIn(['Moto', 'Carro'])
-    tipo
+    tipo: any
     
 }

@@ -11,7 +11,6 @@ export class CriarEstabelecimentoController {
 
   @Post()
   @HttpCode(HttpStatus.NO_CONTENT)
-  @ApiResponse({status: 201})
   async create(@Body() body: CriarEstabelecimentoDTO){
 
     const estabelecimento = Estabelecimento?.create(body);
