@@ -24,17 +24,14 @@ export class SpaceController {
   }
 
   @Get(':id')
-  @HttpCode(201)
   @ApiParam({name: 'id', type: 'number'})
     async findOne(@Param('id') id: number){
       return await this.spaceService.finOne(+id);    
   }
 
   @Delete(':id')
-  @HttpCode(HttpStatus.NO_CONTENT)
   @ApiParam({name: 'id', type: 'number'})
   async delete(@Param('id') id: number){
-
       await this.spaceService.delete(+id);
   }
 
@@ -42,7 +39,7 @@ export class SpaceController {
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiParam({name: 'id', type: 'number'})
   async update(@Param() id: number, @Body() body: UpdateSpaceDTO){  
-            //await this.appService.update(id, body);
+    await this.spaceService.update(id, body);
   }
   
 }

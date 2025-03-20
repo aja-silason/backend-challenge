@@ -1,21 +1,15 @@
-import { SpaceEntity, SpaceProps } from 'src/domain/space/space/space';
-import { TypeORMSpaceRepository } from 'src/infra/repository/space/space.repository';
+import { Injectable } from '@nestjs/common';
+import { SpaceRepository } from 'src/domain/space/protocol/space-repository';
+import { SpaceProps } from 'src/domain/space/space/space';
 
-export class UpdateSpace{
+@Injectable()
+export class UpdateSpaceUseCase{
 
-  public constructor(private readonly estabelecimentoRps: TypeORMSpaceRepository){}
+  public constructor(private readonly spaceRps: SpaceRepository){}
 
-  public async execute(input: SpaceProps) {
-
-    const incommingDatas: SpaceProps = {
-      id: input?.id,
-      name: input?.name,
-      qtd_car_slot: input?.qtd_car_slot,
-      qtd_motorcycle_slot: input?.qtd_motorcycle_slot,
-      telephone: input?.telephone
-    }
-
-      const estabelecimento = SpaceEntity?.create(incommingDatas);
+  public async execute(id: number, {name, qtd_car_slot, qtd_motorcycle_slot, telephone}: SpaceProps) {
+    
+    await this.spaceRps.update(id, {name, qtd_car_slot,qtd_motorcycle_slot,telephone})
 
   }
 

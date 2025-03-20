@@ -2,7 +2,8 @@ import { HttpException, Injectable, NotFoundException } from "@nestjs/common";
 import { CreateSpaceUsecase } from "src/app/usecase/space/create.usecase";
 import { DeleteSpaceUsecase } from "src/app/usecase/space/delete.usecase";
 import { FindAllSpaceUseCase } from "src/app/usecase/space/findAll.usecase";
-import { FindOneSpaceUseCase } from "src/app/usecase/space/findOneusecase";
+import { FindOneSpaceUseCase } from "src/app/usecase/space/findOne.usecase";
+import { UpdateSpaceUseCase } from "src/app/usecase/space/update.usecase";
 import { CreateSpaceDTO } from "src/domain/space/model/dto/create-space.DTO";
 import { UpdateSpaceDTO } from "src/domain/space/model/dto/update-space.DTO";
 
@@ -14,6 +15,7 @@ export class SpaceService {
         private readonly findAllUseCase: FindAllSpaceUseCase,
         private readonly findOneUseCase: FindOneSpaceUseCase,
         private readonly deleteUseCase: DeleteSpaceUsecase,
+        private readonly updateUseCase: UpdateSpaceUseCase,
     ){}
 
     public async create(input: CreateSpaceDTO){
@@ -48,6 +50,8 @@ export class SpaceService {
 
         try {
 
+            //const  a = await this.finOne(+id);
+
             await this.deleteUseCase.execute(+id);
             
         } catch (error) {
@@ -60,7 +64,7 @@ export class SpaceService {
 
         try {
             
-            
+            await this.updateUseCase.execute(+id, newSpace);
 
         } catch (error) {
             throw new HttpException(error.message, error.statusCode);

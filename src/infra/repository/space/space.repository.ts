@@ -4,6 +4,7 @@ import { Repository } from "typeorm";
 import { SpaceEntity } from "src/domain/space/space/space";
 import { InjectRepository } from "@nestjs/typeorm";
 import { SpaceModel } from "src/domain/space/model/space.model";
+import { UpdateSpaceDTO } from "src/domain/space/model/dto/update-space.DTO";
 
 
 @Injectable()
@@ -30,12 +31,12 @@ export class TypeORMSpaceRepository implements SpaceRepository {
     }
 
 
-    public async findOne(id: number): Promise<any | null> {
+    public async findOne(id: number): Promise<SpaceModel | null | any> {
 
         const space = await this.spaceRps.findOne({ where: { id: id } });
 
         if (!space) {
-            throw new NotFoundException('space not found');
+            throw new NotFoundException('space with id ${id} not found ');
         }
 
         return space;
@@ -44,18 +45,18 @@ export class TypeORMSpaceRepository implements SpaceRepository {
 
     async delete(id: number): Promise<void> {
         
-        const hasSpace = await this.findOne(+id);
-        
-        if(!hasSpace){
-            throw new NotFoundException('space not found');
-        }
-
+        await this.findOne(+id);
         await this.spaceRps.delete(+id);
 
     }
 
-    async update(id: number, newSpace: SpaceEntity): Promise<void> {
-        console.log("Nothing")
+    async update(id: number, newSpace: UpdateSpaceDTO): Promise<void> {
+
+        const space = await this.findOne(+id);
+        space.updatedAt = new Date();
+        this.spaceRps.merge(space, newSpace);
+        await this.spaceRps.save(space)
+        
     }
 
 
