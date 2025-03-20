@@ -1,11 +1,10 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
+import { Injectable } from "@nestjs/common";
 import { Space } from "src/domain/space/space/space.entidady";
 import { SpaceRepository } from "src/domain/space/protocol/space-repository";
-import { MoreThan, Repository } from "typeorm";
+import { Repository } from "typeorm";
 
 @Injectable()
-export class EstabelecimentoRepositorio implements SpaceRepository {
+export class TypeORMSpace implements SpaceRepository {
 
     constructor(
         private readonly spaceRps: Repository<Space>

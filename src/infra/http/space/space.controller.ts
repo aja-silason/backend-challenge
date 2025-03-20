@@ -3,7 +3,6 @@ import { ApiParam, ApiTags } from "@nestjs/swagger";
 import { CreateSpaceDTO } from "src/domain/space/model/dto/create-space.DTO";
 import { UpdateSpaceDTO } from "src/domain/space/model/dto/update-space.DTO";
 import { Space } from "src/domain/space/space/space.entidady";
-import { EstabelecimentoRepositorio } from "src/infra/repositorio/estabelecimento/space.repository";
 import { SpaceService } from "./space.service";
 
 @Controller('space')

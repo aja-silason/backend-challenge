@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { EstabelecimentoORM } from '../../domain/space/model/space.model';
+import { SpaceModel } from '../../domain/space/model/space.model';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SpaceModule } from '../http/space/space.module';
 
@@ -16,7 +16,7 @@ import { SpaceModule } from '../http/space/space.module';
                 username: configService.get('DATABASE_USER', 'root'),
                 password: configService.get('DATABASE_PASSWORD', '123'),
                 database: configService.get('DATABASE_DB', 'estacionamento'),
-                entities: [EstabelecimentoORM],
+                entities: [SpaceModel],
                 synchronize: true,
             })
         }),

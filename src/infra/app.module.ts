@@ -1,11 +1,9 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './infra/http/app/app.controller';
-import { AppService } from './app/usecase/app.service';
-import { ConfigureModule } from './infra/configure/configure.module';
-import { DatabaseModule } from './infra/database/database.module';
-import { SpaceModule } from './infra/module/estabelecimento/estabelecimento.module';
-import { VeiculoModule } from './infra/module/veiculo/veiculo.module';
-import { EntradaSaidaModule } from './infra/module/relatorio/entrada-saida.module';
+import { DatabaseModule } from './database/database.module';
+import { ConfigureModule } from './configure/configure.module';
+import { SpaceModule } from './http/space/space.module';
+import { AppController } from './http/app/app.controller';
+import { AppService } from 'src/app/usecase/app.service';
 
 @Module({
   imports: [

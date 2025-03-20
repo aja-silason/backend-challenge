@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({name: 'estabelecimento'})
-export class EstabelecimentoORM {
+@Entity({name: 'space'})
+export class SpaceModel {
 
     @PrimaryGeneratedColumn({type: 'int'})
     id: number
@@ -24,8 +24,8 @@ export class EstabelecimentoORM {
     @Column({type: 'int'})
     slot_motorcycle: number
 
-    @OneToMany(() => EstabelecimentoORM, vehicle => vehicle.vehicles)
-    vehicles: EstabelecimentoORM[]
+    @OneToMany(() => SpaceModel, vehicle => vehicle.vehicles)
+    vehicles: SpaceModel[]
 
     @Column({name: "created_at", type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
     createdAt: Date

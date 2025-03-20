@@ -1,9 +1,9 @@
 import { Space, SpaceProps } from 'src/domain/space/space/space.entidady';
-import { EstabelecimentoRepositorio } from 'src/infra/repositorio/estabelecimento/space.repository';
+import { TypeORMSpace } from 'src/infra/repository/space/space.repository';
 
 export class UpdateSpace{
 
-  public constructor(private readonly estabelecimentoRps: EstabelecimentoRepositorio){}
+  public constructor(private readonly estabelecimentoRps: TypeORMSpace){}
 
   public async execute(input: SpaceProps) {
 
