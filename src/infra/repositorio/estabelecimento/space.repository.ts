@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Space } from "src/dominio/space/space/space.entidady";
-import { SpaceRepository } from "src/dominio/space/protocol/space-repository";
+import { Space } from "src/domain/space/space/space.entidady";
+import { SpaceRepository } from "src/domain/space/protocol/space-repository";
 import { MoreThan, Repository } from "typeorm";
 
 @Injectable()

@@ -1,10 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { EstabelecimentoORM } from '../../dominio/space/model/estabelecimento.model';
+import { EstabelecimentoORM } from '../../domain/space/model/space.model';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { SpaceModule } from '../module/estabelecimento/estabelecimento.module';
-import { VeiculoModule } from '../module/veiculo/veiculo.module';
-import { EntradaSaidaModule } from '../module/relatorio/entrada-saida.module';
+import { SpaceModule } from '../http/space/space.module';
 
 @Module({
     imports: [
@@ -23,8 +21,6 @@ import { EntradaSaidaModule } from '../module/relatorio/entrada-saida.module';
             })
         }),
         SpaceModule,
-        VeiculoModule,
-        EntradaSaidaModule,
     ]
 })
 export class DatabaseModule {}

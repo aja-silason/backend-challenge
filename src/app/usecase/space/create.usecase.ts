@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { Space, SpaceProps } from 'src/dominio/space/space/space.entidady';
-import { SpaceRepository } from 'src/dominio/space/protocol/space-repository';
-import { EstabelecimentoORM } from 'src/dominio/space/model/estabelecimento.model';
+import { Space, SpaceProps } from 'src/domain/space/space/space.entidady';
+import { SpaceRepository } from 'src/domain/space/protocol/space-repository';
+import { EstabelecimentoORM } from 'src/domain/space/model/space.model';
 import { EstabelecimentoRepositorio } from 'src/infra/repositorio/estabelecimento/space.repository';
 
 @Injectable()

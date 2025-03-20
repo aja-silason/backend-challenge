@@ -1,4 +1,4 @@
-import { Space, SpaceProps } from 'src/dominio/space/space/space.entidady';
+import { Space, SpaceProps } from 'src/domain/space/space/space.entidady';
 import { EstabelecimentoRepositorio } from 'src/infra/repositorio/estabelecimento/space.repository';
 
 export class UpdateSpace{
