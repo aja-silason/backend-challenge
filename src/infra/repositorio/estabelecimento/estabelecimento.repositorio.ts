@@ -1,5 +1,7 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { ActualizarEstabelecimentoDTO } from "src/dominio/estabelecimento/model/dto/actualizar-estabelecimentoDTO";
+import { CriarEstabelecimentoDTO } from "src/dominio/estabelecimento/model/dto/Criar-estabelecimentoDTO";
 import { EstabelecimentoORM } from "src/dominio/estabelecimento/model/estabelecimento.model";
 import { Repository } from "typeorm";
 
@@ -11,7 +13,7 @@ export class EstabelecimentoRepositorio {
         private readonly estabelicimentoRps: Repository<EstabelecimentoORM>
     ){}
 
-    async create(estabelecimento) {
+    async create(estabelecimento: CriarEstabelecimentoDTO) {
 
         return await this.estabelicimentoRps.save(this.estabelicimentoRps.create(estabelecimento));
     }
@@ -28,7 +30,7 @@ export class EstabelecimentoRepositorio {
         }
     }
 
-    async update(id: number, estabelecimentoUpdated: EstabelecimentoORM){
+    async update(id: number, estabelecimentoUpdated: ActualizarEstabelecimentoDTO){
         const estabelecimento = await this.findOneByOrFail(id);
         this.estabelicimentoRps.merge(estabelecimento, estabelecimentoUpdated);
         return await this.estabelicimentoRps.save(estabelecimento);
