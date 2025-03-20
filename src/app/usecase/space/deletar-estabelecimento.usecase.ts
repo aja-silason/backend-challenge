@@ -1,7 +1,6 @@
-import { UseCase } from '../usecase';
 import { TypeORMSpaceRepository } from 'src/infra/repository/space/space.repository';
 
-export class DeletarEstabelecimento implements UseCase<any, any>{
+export class DeletarEstabelecimento {
   
   public constructor(private readonly estabelecimentoGateway: TypeORMSpaceRepository){}
 

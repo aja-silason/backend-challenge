@@ -18,8 +18,8 @@ export class SpaceController {
   }
 
   @Get()
-     async find(){
-      //return await this.appService.find();
+    async find(){
+    return await this.spaceService.findAll();
   }
 
   @Get(':id')

@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { SpaceRepository } from "src/domain/space/protocol/space-repository";
 import { Repository } from "typeorm";
 import { SpaceEntity } from "src/domain/space/space/space";
@@ -25,6 +25,16 @@ export class TypeORMSpaceRepository implements SpaceRepository {
         } catch (error) {
             
             console.log('falha',error)
+        }
+    }
+
+    public async findAll(): Promise<any[]> {
+        try {
+
+            return await this.spaceRps.find();
+            
+        } catch (error) {
+            throw new BadRequestException('Something went wrong, we  are fixing for you');
         }
     }
 
