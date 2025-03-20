@@ -8,6 +8,7 @@ import { DeletarVeiculoController } from "src/infra/http/veiculo/deletar-estabel
 import { EntradaVeiculoController } from "src/infra/http/veiculo/entrada-veiculo.controller";
 import { ListarVeiculoController } from "src/infra/http/veiculo/listar-estabelecimento.controller";
 import { ListarUmVeiculoController } from "src/infra/http/veiculo/listar-um-estabelecimento.controller";
+import { SaidaVeiculoController } from "src/infra/http/veiculo/saida-veiculo.controller";
 import { RelatorioRepositorio } from "src/infra/repositorio/relatorio/relatorio.repositorio";
 import { VeiculoRepositorio } from "src/infra/repositorio/veiculo/veiculo.repositorio";
 
@@ -22,7 +23,8 @@ import { VeiculoRepositorio } from "src/infra/repositorio/veiculo/veiculo.reposi
         DeletarVeiculoController,
         ActualizarVeiculontroller,
 
-        EntradaVeiculoController
+        EntradaVeiculoController,
+        SaidaVeiculoController
     ],
     
     providers: [VeiculoRepositorio, RelatorioRepositorio],

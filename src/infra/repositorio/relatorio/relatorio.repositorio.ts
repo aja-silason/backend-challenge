@@ -26,11 +26,12 @@ export class RelatorioRepositorio {
 
     async criar_saida(id: number) {
 
-        const existeEntrada = await this.findOneByOrFail(id);
+        const listaDeVeiculos = await this.find();
+        const veiculo = listaDeVeiculos?.filter((item) => item?.id_veiculo == id)[0]
+        
+        veiculo.hora_saida = new Date();
 
-        existeEntrada.hora_saida = new Date();
-
-        return await this.relatorioRps.save(this.relatorioRps.create(existeEntrada));
+        return await this.relatorioRps.save(this.relatorioRps.create(veiculo));
     }
 
     async find() {

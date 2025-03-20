@@ -6,7 +6,7 @@ import { CriarVeiculoDTO } from "src/dominio/veiculo/model/dto/Criar-veiculoDTO"
 import { RelatorioRepositorio } from "src/infra/repositorio/relatorio/relatorio.repositorio";
 import { VeiculoRepositorio } from "src/infra/repositorio/veiculo/veiculo.repositorio";
 
-@Controller('veiculo')
+@Controller('veiculo/entrada')
 @ApiTags('Veiculo')
 export class EntradaVeiculoController {
   constructor(private readonly appService: VeiculoRepositorio, private readonly relatorio: RelatorioRepositorio) {}
@@ -30,7 +30,6 @@ export class EntradaVeiculoController {
     if(!carroExiste){
       throw new NotFoundException(`carro com o id ${id} não encontrado`)
     }
-    
     
     const { id: id_veiculo, marca } = carroExiste
 
