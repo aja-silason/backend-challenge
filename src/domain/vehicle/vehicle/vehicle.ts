@@ -6,7 +6,7 @@ export type VehicleProps = {
     brand: string,
     model: string,
     color: string,
-    plate: string,
+    plate: number,
     type: string,
     spaceId: SpaceModel
 }
