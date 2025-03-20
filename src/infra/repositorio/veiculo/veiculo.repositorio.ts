@@ -32,6 +32,7 @@ export class VeiculoRepositorio {
 
     async update(id: number, veiculoUpdate: ActualizarVeiculoDTO){
         const veiculo = await this.findOneByOrFail(id);
+        veiculo.updatedAt = new Date();
         this.veiculoRps.merge(veiculo, veiculoUpdate);
         return await this.veiculoRps.save(veiculo);
     }

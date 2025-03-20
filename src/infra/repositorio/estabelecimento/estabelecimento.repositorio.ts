@@ -32,6 +32,7 @@ export class EstabelecimentoRepositorio {
 
     async update(id: number, estabelecimentoUpdated: ActualizarEstabelecimentoDTO){
         const estabelecimento = await this.findOneByOrFail(id);
+        estabelecimento.updatedAt = new Date();
         this.estabelicimentoRps.merge(estabelecimento, estabelecimentoUpdated);
         return await this.estabelicimentoRps.save(estabelecimento);
     }
