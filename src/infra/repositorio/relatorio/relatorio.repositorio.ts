@@ -38,5 +38,37 @@ export class RelatorioRepositorio {
         return await this.relatorioRps.find();
     }
 
+    async entrada_saida(){
+
+        const entradas = await this.relatorioRps.createQueryBuilder('entradas_saidas')
+        .where('entradas_saidas.hora_entrada is not null')
+        .getCount();
+
+        const saidas = await this.relatorioRps.createQueryBuilder('entradas_saidas')
+        .where('entradas_saidas.hora_saida')
+        .getCount()
+
+        return {
+            entradas,
+            saidas
+        }
+    }
+
+    async entrada_saida_por_hora(hora: number){
+
+        const entradas_por_hora = await this.relatorioRps.createQueryBuilder('entradas_saidas')
+        .where('extract(hour from entradas_saidas.hora_entrada) = :hora', {hora})
+        .getCount();
+
+        const saidas_por_hora = await this.relatorioRps.createQueryBuilder('entradas_saidas')
+        .where('extract(hour from entradas_saidas.hora_saida) = :hora', {hora})
+        .getCount()
+
+        return {
+            entradas_por_hora,
+            saidas_por_hora
+        }
+    }
+
 
 }
