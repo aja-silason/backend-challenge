@@ -44,6 +44,18 @@ export class SpaceService {
         }
     }
 
+    public async delete(id: number){
+
+        try {
+
+            await this.deleteUseCase.execute(+id);
+            
+        } catch (error) {
+            throw new HttpException(error.message, error.statusCode);
+        }
+
+    }
+
     public async update(id: number, newSpace: UpdateSpaceDTO){
 
         try {
@@ -56,16 +68,5 @@ export class SpaceService {
 
     }
 
-    public async delete(id: number){
-
-        try {
-
-            await this.deleteUseCase.execute(+id);
-            
-        } catch (error) {
-            throw new HttpException(error.message, error.statusCode);
-        }
-
-    }
 
 }

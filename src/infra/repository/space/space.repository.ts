@@ -42,16 +42,22 @@ export class TypeORMSpaceRepository implements SpaceRepository {
 
     }
 
-    update(id: number, newSpace: SpaceEntity): Promise<void> {
-        throw "Nothing"
-    }
-
     async delete(id: number): Promise<void> {
         
-        await this.findOne(+id);
+        const hasSpace = await this.findOne(+id);
+        
+        if(!hasSpace){
+            throw new NotFoundException('space not found');
+        }
+
         await this.spaceRps.delete(+id);
 
     }
+
+    async update(id: number, newSpace: SpaceEntity): Promise<void> {
+        console.log("Nothing")
+    }
+
 
 
 

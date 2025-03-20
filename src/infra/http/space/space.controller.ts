@@ -11,36 +11,37 @@ export class SpaceController {
   constructor(private readonly spaceService: SpaceService) {}
 
   @Post()
-  @HttpCode(HttpStatus.NO_CONTENT)
+  @HttpCode(HttpStatus.CREATED)
   async create(@Body() body: CreateSpaceDTO){
     const space = SpaceEntity?.create(body);
     await this.spaceService.create(space);
   }
 
   @Get()
+  @HttpCode(201)
     async find(){
       return await this.spaceService.findAll();
   }
 
   @Get(':id')
+  @HttpCode(201)
   @ApiParam({name: 'id', type: 'number'})
     async findOne(@Param('id') id: number){
-
-        return await this.spaceService.finOne(+id);    
-    
+      return await this.spaceService.finOne(+id);    
   }
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiParam({name: 'id', type: 'number'})
-      async delete(@Param() id: number){
-        //await this.appService.delete(id);
+  async delete(@Param('id') id: number){
+
+      await this.spaceService.delete(+id);
   }
 
   @Put(':id')
-    @HttpCode(HttpStatus.NO_CONTENT)
-    @ApiParam({name: 'id', type: 'number'})
-    async update(@Param() id: number, @Body() body: UpdateSpaceDTO){  
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiParam({name: 'id', type: 'number'})
+  async update(@Param() id: number, @Body() body: UpdateSpaceDTO){  
             //await this.appService.update(id, body);
   }
   

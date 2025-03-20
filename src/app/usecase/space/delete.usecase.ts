@@ -1,6 +1,7 @@
+import { Injectable } from '@nestjs/common';
 import { SpaceRepository } from 'src/domain/space/protocol/space-repository';
-import { TypeORMSpaceRepository } from 'src/infra/repository/space/space.repository';
 
+@Injectable()
 export class DeleteSpaceUsecase {
   
   public constructor(private readonly spaceRps: SpaceRepository){}
