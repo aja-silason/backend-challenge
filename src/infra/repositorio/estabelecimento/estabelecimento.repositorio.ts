@@ -19,7 +19,7 @@ export class EstabelecimentoRepositorio {
     }
 
     async find() {
-        return await this.estabelicimentoRps.find({withDeleted: true});
+        return await this.estabelicimentoRps.find();
     }
 
     async findOneByOrFail(id: number | any){
