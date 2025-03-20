@@ -2,7 +2,12 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
+
+
   getHello(): string {
-    return 'Hello World, this is my third try to use Nest, but in this time i´m more capeble';
+
+    const apiurl = 'http://localhost:3003/api/docs';
+
+    return `Olá Anania Augusto aqui, copie e cole na barra de pesquisa do navegador: ${apiurl}`;
   }
 }
