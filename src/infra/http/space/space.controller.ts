@@ -4,17 +4,18 @@ import { CreateSpaceDTO } from "src/domain/space/model/dto/create-space.DTO";
 import { UpdateSpaceDTO } from "src/domain/space/model/dto/update-space.DTO";
 import { Space } from "src/domain/space/space/space.entidady";
 import { EstabelecimentoRepositorio } from "src/infra/repositorio/estabelecimento/space.repository";
+import { SpaceService } from "./space.service";
 
-@Controller('estabelecimento')
-@ApiTags('Estacionamento')
+@Controller('space')
+@ApiTags('Space')
 export class SpaceController {
-  constructor(private readonly appService: EstabelecimentoRepositorio) {}
+  constructor(private readonly spaceService: SpaceService) {}
 
   @Post()
   @HttpCode(HttpStatus.NO_CONTENT)
   async create(@Body() body: CreateSpaceDTO){
-    const estabelecimento = Space?.create(body);
-    await this.appService.create(estabelecimento);
+    const space = Space?.create(body);
+    await this.spaceService.create(space);
   }
 
 
