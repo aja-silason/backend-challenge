@@ -1,9 +1,9 @@
-import { Space, SpaceProps } from 'src/domain/space/space/space.entidady';
-import { TypeORMSpace } from 'src/infra/repository/space/space.repository';
+import { SpaceEntity, SpaceProps } from 'src/domain/space/space/space';
+import { TypeORMSpaceRepository } from 'src/infra/repository/space/space.repository';
 
 export class UpdateSpace{
 
-  public constructor(private readonly estabelecimentoRps: TypeORMSpace){}
+  public constructor(private readonly estabelecimentoRps: TypeORMSpaceRepository){}
 
   public async execute(input: SpaceProps) {
 
@@ -15,7 +15,7 @@ export class UpdateSpace{
       telephone: input?.telephone
     }
 
-      const estabelecimento = Space?.create(incommingDatas);
+      const estabelecimento = SpaceEntity?.create(incommingDatas);
 
   }
 

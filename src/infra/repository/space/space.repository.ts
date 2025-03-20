@@ -1,21 +1,26 @@
 import { Injectable } from "@nestjs/common";
-import { Space } from "src/domain/space/space/space.entidady";
 import { SpaceRepository } from "src/domain/space/protocol/space-repository";
 import { Repository } from "typeorm";
+import { SpaceEntity } from "src/domain/space/space/space";
+import { InjectRepository } from "@nestjs/typeorm";
+import { SpaceModel } from "src/domain/space/model/space.model";
+
 
 @Injectable()
-export class TypeORMSpace implements SpaceRepository {
+export class TypeORMSpaceRepository implements SpaceRepository {
 
     constructor(
-        private readonly spaceRps: Repository<Space>
+        @InjectRepository(SpaceModel)
+        private readonly spaceRps: Repository<SpaceModel>
     ){}
 
 
-    public async create({name, qtd_car_slot, qtd_motorcycle_slot, slot_car, slot_motorcycle, telephone}: Space ): Promise<void> {
+    public async create(input: SpaceModel ): Promise<void> {
         
         try {
 
-            this.spaceRps.create({name, qtd_car_slot,qtd_motorcycle_slot, telephone, slot_car, slot_motorcycle})
+            const space = this.spaceRps.create(input)
+            await this.spaceRps.save(space)
             
         } catch (error) {
             

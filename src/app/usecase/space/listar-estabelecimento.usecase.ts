@@ -1,11 +1,11 @@
 import { UseCase } from '../usecase';
-import { TypeORMSpace } from 'src/infra/repository/space/space.repository';
+import { TypeORMSpaceRepository } from 'src/infra/repository/space/space.repository';
 
 export class ListarEstabelecimento implements UseCase<any, any>{
   
-  public constructor(private readonly estabelecimentoGateway: TypeORMSpace){}
+  public constructor(private readonly estabelecimentoGateway: TypeORMSpaceRepository){}
 
-  public static create(estabelecimentoGateway: TypeORMSpace){
+  public static create(estabelecimentoGateway: TypeORMSpaceRepository){
     return new ListarEstabelecimento(estabelecimentoGateway);
   }
 

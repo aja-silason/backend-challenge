@@ -2,7 +2,7 @@ import { BadRequestException } from "@nestjs/common";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 export type SpaceProps = {
-    id?: string,
+    id?: number,
     name: string,
     telephone: number,
     qtd_car_slot: number,
@@ -11,7 +11,7 @@ export type SpaceProps = {
     slot_car?: number,
 }
 
-export class Space {
+export class SpaceEntity {
 
     public constructor(private props: SpaceProps){}
 
@@ -36,7 +36,7 @@ export class Space {
           }    
 
 
-        return new Space({
+        return new SpaceEntity({
             name: props.name,
             qtd_car_slot: props.qtd_car_slot,
             qtd_motorcycle_slot: props.qtd_motorcycle_slot,

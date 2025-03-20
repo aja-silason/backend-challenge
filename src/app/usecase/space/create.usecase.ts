@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Space, SpaceProps } from 'src/domain/space/space/space.entidady';
 import { SpaceRepository } from 'src/domain/space/protocol/space-repository';
+import { SpaceEntity, SpaceProps } from 'src/domain/space/space/space';
 
 @Injectable()
 export class CreateSpaceUsecase{
@@ -16,7 +16,7 @@ export class CreateSpaceUsecase{
       telephone: input?.telephone
     }
 
-      const space = Space?.create(incommingDatas);
+      const space = SpaceEntity?.create(incommingDatas);
       
       const aStabelecimento = await this.repository?.create(space);  
 

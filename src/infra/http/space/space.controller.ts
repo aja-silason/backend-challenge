@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put }
 import { ApiParam, ApiTags } from "@nestjs/swagger";
 import { CreateSpaceDTO } from "src/domain/space/model/dto/create-space.DTO";
 import { UpdateSpaceDTO } from "src/domain/space/model/dto/update-space.DTO";
-import { Space } from "src/domain/space/space/space.entidady";
+import { SpaceEntity } from "src/domain/space/space/space";
 import { SpaceService } from "./space.service";
 
 @Controller('space')
@@ -13,10 +13,9 @@ export class SpaceController {
   @Post()
   @HttpCode(HttpStatus.NO_CONTENT)
   async create(@Body() body: CreateSpaceDTO){
-    const space = Space?.create(body);
+    const space = SpaceEntity?.create(body);
     await this.spaceService.create(space);
   }
-
 
   @Get()
      async find(){

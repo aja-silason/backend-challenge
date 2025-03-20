@@ -4,6 +4,8 @@ import { CreateSpaceUsecase } from "src/app/usecase/space/create.usecase";
 import { SpaceRepository } from "src/domain/space/protocol/space-repository";
 import { SpaceModel } from "src/domain/space/model/space.model";
 import { SpaceController } from "src/infra/http/space/space.controller";
+import { TypeORMSpaceRepository } from "src/infra/repository/space/space.repository";
+import { SpaceService } from "./space.service";
 
 @Module({
     imports: [
@@ -12,12 +14,13 @@ import { SpaceController } from "src/infra/http/space/space.controller";
     controllers: [SpaceController],
     
     providers: [
+        SpaceService,
         CreateSpaceUsecase,
         {
             provide: SpaceRepository,
-            useClass: SpaceModel 
+            useClass: TypeORMSpaceRepository 
         }
-    ],
+    ]
 
 })
 export class SpaceModule {}
