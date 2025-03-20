@@ -6,7 +6,7 @@ export type VeiculoProps = {
     marca: string,
     modelo: string,
     cor: string,
-    placa: string
+    placa: number
     tipo: string
 }
 

@@ -6,7 +6,7 @@ import { VeiculoORM } from "src/dominio/veiculo/model/veiculo.model";
 import { Repository } from "typeorm";
 
 @Injectable()
-export class EstabelecimentoRepositorio {
+export class VeiculoRepositorio {
 
     constructor(
         @InjectRepository(VeiculoORM)

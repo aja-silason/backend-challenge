@@ -1,24 +1,26 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { ActualizarEstabelecimento } from "src/app/caso-de-uso/estabelecimento/actualizar-estabelecimento.usecase";
-import { CriarEstabelecimento } from "src/app/caso-de-uso/estabelecimento/criar-estabelecimento.usecase";
-import { DeletarEstabelecimento } from "src/app/caso-de-uso/estabelecimento/deletar-estabelecimento.usecase";
-import { ListarEstabelecimento } from "src/app/caso-de-uso/estabelecimento/listar-estabelecimento.usecase";
-import { EstabelecimentoORM } from "src/dominio/estabelecimento/model/estabelecimento.model";
-import { ActualizarEstabelecimentoController } from "src/infra/http/estabelecimento/actualizar-estabelecimento.controller";
-import { CriarEstabelecimentoController } from "src/infra/http/estabelecimento/criar-estabelecimento.controller";
-import { DeletarEstabelecimentoController } from "src/infra/http/estabelecimento/deletar-estabelecimento.controller";
-import { ListarEstabelecimentoController } from "src/infra/http/estabelecimento/listar-estabelecimento.controller";
-import { ListarUmEstabelecimentoController } from "src/infra/http/estabelecimento/listar-um-estabelecimento.controller";
-import { EstabelecimentoRepositorio } from "src/infra/repositorio/estabelecimento/estabelecimento.repositorio";
+import { VeiculoORM } from "src/dominio/veiculo/model/veiculo.model";
+import { ActualizarVeiculontroller } from "src/infra/http/veiculo/actualizar-veiculo.controller";
+import { CriarVeiculoController } from "src/infra/http/veiculo/criar-veiculo.controller";
+import { DeletarVeiculoController } from "src/infra/http/veiculo/deletar-estabelecimento.controller";
+import { ListarVeiculoController } from "src/infra/http/veiculo/listar-estabelecimento.controller";
+import { ListarUmVeiculoController } from "src/infra/http/veiculo/listar-um-estabelecimento.controller";
+import { VeiculoRepositorio } from "src/infra/repositorio/veiculo/veiculo.repositorio";
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([EstabelecimentoORM])
+        TypeOrmModule.forFeature([VeiculoORM])
     ],
-    controllers: [CriarEstabelecimentoController, ListarEstabelecimentoController, ListarUmEstabelecimentoController, DeletarEstabelecimentoController, ActualizarEstabelecimentoController],
+    controllers: [
+        CriarVeiculoController,
+        ListarVeiculoController,
+        ListarUmVeiculoController,
+        DeletarVeiculoController,
+        ActualizarVeiculontroller
+    ],
     
-    providers: [EstabelecimentoRepositorio, CriarEstabelecimento, ListarEstabelecimento, DeletarEstabelecimento, ActualizarEstabelecimento],
+    providers: [VeiculoRepositorio],
 
 })
-export class EstabelecimentoModule {}
+export class VeiculoModule {}
