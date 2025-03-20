@@ -1,19 +1,61 @@
-### Mirantes Technologies 🚀
-*"A Mirantes oferece soluções avançadas de RH, desde recrutamento até gestão de talentos, automação e desenvolvimento de carreiras para empresas globalmente."*
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+</p>
 
-Conheça a [Mirantes Technologies](https://mirantes.io)
+[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
+[travis-url]: https://travis-ci.org/nestjs/nest
+[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
+[linux-url]: https://travis-ci.org/nestjs/nest
+  
+<p align="center">Projeto desenvolvido para a vaga de BackEnd na STETMENT MC</p>
+<p align="center">
 
----
+## Technologias durante o desenvolvimento do projeto
 
-## Teste para Vaga de Desenvolvimento Back-end
-Criar uma API para gerenciar um estacionamento de carros e motos.
+    TypeScript
+    NestJS
+    MySql
+    TypeORM
 
----
+## Instale o Pacote
 
-### Funcionalidades 🛠️
+Para poder usar o projecto precisa ter o Docker instalado em sua máquina, para no minimo rodar o banco de dados. Caso tenha, siga os seguintes passo:
+
+```bash
+$ npm install
+# ou se tiver problemas com versões use
+$ npm install --force
+ 
+# ou usar o:
+$ yarn install
+  
+```
+  
+## Rodar o app
+```bash
+$ npm run estacionamento:dev
+  
+# ou usar o:
+$ yarn estacionamento:dev
+```
+  
+## Caso tenha o Docker para montar a imagem use:
+```bash
+$ docker run --name challenge-db -p 3306:3306 -e MYSQL_ROOT_PASSWORD=SUA_PASS -d mysql
+$ docker exec -it challenge-db mysql -u root -p
+```
+
+## Para acesso à URL
+http://localhost:3003/ para developer
+
+## Para acesso à URL Swagger
+http://localhost:8080/api/docs
+  
+
+### Requisitos do teste "Funcionalidades" 🛠️
 
 - **Estabelecimento:** CRUD;
-  Criar um cadastro da empresa com os seguintes campos:
+  Criar um cadastro da empresa com os campos:
   - Nome;
   - Endereço;
   - Telefone;
@@ -23,7 +65,7 @@ Criar uma API para gerenciar um estacionamento de carros e motos.
   **Todos** os campos são de preenchimento obrigatório.
 
 - **Veículos:** CRUD;
-  Criar um cadastro de veículos com os seguintes campos:
+  Criar um cadastro de veículos com os campos:
   - Marca;
   - Modelo;
   - Cor;
@@ -36,40 +78,31 @@ Criar uma API para gerenciar um estacionamento de carros e motos.
 
 ---
 
-### Requisitos 💻
+### Sobre os Requisitos 💻
 
-- A aplicação deverá ser desenvolvida usando **NestJs** (preferencialmente), **.NET** a partir da versão 5+, ou **Python Django**;
-- Modelagem de dados pode ser feita no banco de dados de sua preferência, podendo ser um banco relacional ou não relacional (MongoDB, SQL Server, PostgreSQL, MySQL, etc);
+- A aplicação foi desenvolvida usando **NestJs**;
+- Banco de dados relacional ou não relacional (MySQL);
 - Persistência de dados no banco deverá ser feita utilizando:
-  - **Entity Framework Core** (para .NET);
-  - **ORMs como Prisma, TypeORM ou Sequelize** (para NestJs);
-  - **Django ORM** (para Python Django).
-- O retorno da API deverá ser em formato **REST** ou **GraphQL**;
-- Utilizar as requisições **GET, POST, PUT ou DELETE**, conforme a melhor prática;
-- Implementar a arquitetura de software baseada em **Clean Architecture** (preferencialmente) ou **Hexagonal Architecture**;
-- Criar o README do projeto descrevendo as tecnologias utilizadas, chamadas dos serviços e configurações necessárias para executar a aplicação.
-
+  - **ORMs como TypeORM**;
+- O retorno da API no formato **REST**;
+- As requisições são feitas com os verbos **GET, POST, PUT, PATCH e DELETE**, conforme a melhor prática;
+- Arquitetura de software baseada em **Clean Architecture**;
 ---
 
 ### Pontos Extras ⭐
 
-- Desenvolvimento baseado em **TDD**;
 - Práticas de modelagem de projeto;
-- Criar e configurar o **Swagger** (ou equivalente para GraphQL) da API de acordo com as melhores práticas;
-- Criar uma API para extração de relatórios da aplicação com as seguintes informações:
+- Configuração da API com o **Swagger**;
+- Disponibilizar ponto na aplicação para extração de relatórios da aplicação com as seguintes informações:
   - Sumário da quantidade de entrada e saída;
   - Sumário da quantidade de entrada e saída de veículos por hora;
-- Criar uma solução de **autenticação**;
 - Publicação da aplicação em algum servidor;
-- Utilização de **Docker** para containerização da aplicação.
+- Utilização de **Docker** para containerização da aplicação no caso do banco de dados.
 
----
+## Contacto
+WhatsApp: +244 944996909
+ananiasjaimegusto@gmail.com
 
-### Submissão do Teste 📝
+## Sobre
 
-Crie um fork do teste para acompanharmos o seu desenvolvimento através dos seus commits.
-
----
-
-### Obrigado!
-Agradecemos sua participação no teste. Boa sorte! 😄
+Autor - Anania Augusto
