@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 
 @Entity({name: 'estabelecimento'})
-export class EstabelecimentoORM {
+export class RelatorioORM {
 
     @PrimaryGeneratedColumn({type: 'int'})
     id: number;
@@ -9,11 +9,11 @@ export class EstabelecimentoORM {
     @Column()
     veiculo: string
     
-    @Column({type: 'int'})
-    hora_entrada: number
+    @Column({type: 'timestamp', default: null})
+    hora_entrada: string
 
-    @Column({type: 'int'})
-    hora_saida: number
+    @Column({type: 'timestamp', nullable: true, default: null})
+    hora_saida: string
 
     @Column({name: "created_at", type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
     createdAt: Date
