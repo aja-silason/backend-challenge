@@ -1,4 +1,4 @@
-import { IsNotEmpty, isNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsIn, IsNotEmpty, isNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CriarVeiculoDTO {
     
@@ -20,6 +20,7 @@ export class CriarVeiculoDTO {
 
     @IsString()
     @IsNotEmpty()
+    @IsIn(['Moto', 'Carro'])
     tipo
     
 }
