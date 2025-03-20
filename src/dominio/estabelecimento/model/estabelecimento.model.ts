@@ -1,19 +1,19 @@
-import { Column, Entity, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 
 @Entity({name: 'estabelecimento'})
 export class EstabelecimentoORM {
 
     @PrimaryGeneratedColumn({type: 'int'})
-    id: number;
+    id: number
 
     @Column()
-    nome: string;
+    nome: string
 
     @Column()
-    telefone: number;
+    telefone: number
 
     @Column({type: 'int'})
-    qtd_vagas_motos: number;
+    qtd_vagas_motos: number
     
     @Column({type: 'int'})
     qtd_vagas_carros: number
@@ -23,6 +23,9 @@ export class EstabelecimentoORM {
 
     @Column({type: 'int'})
     disponiveis_motos: number
+
+    @OneToMany(() => EstabelecimentoORM, veiculo => veiculo.veiculos)
+    veiculos: EstabelecimentoORM[]
 
     @Column({name: "created_at", type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
     createdAt: Date

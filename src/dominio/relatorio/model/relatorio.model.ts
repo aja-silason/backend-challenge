@@ -12,7 +12,7 @@ export class RelatorioORM {
     @Column()
     id_veiculo: number
 
-    @Column({type: 'timestamp', default: null})
+    @Column({type: 'timestamp', nullable: true, default: null})
     hora_entrada: Date
 
     @Column({type: 'timestamp', nullable: true, default: null})

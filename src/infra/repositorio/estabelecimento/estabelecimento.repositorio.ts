@@ -33,7 +33,7 @@ export class EstabelecimentoRepositorio {
     }
 
     async findOne(id: number  | any){
-        return await this.estabelicimentoRps.findOne({where: {id: id}});
+        return await this.estabelicimentoRps.findOne({where: {id: +id}});
     }
 
     async update(id: number, estabelecimentoUpdated: ActualizarEstabelecimentoDTO){
@@ -52,7 +52,7 @@ export class EstabelecimentoRepositorio {
     }
 
 
-    async registar_entrada(tipo: string, id: number){
+    async registar_entrada(tipo: string){
 
         if(tipo == 'Moto'){
             const vagas = await this.estabelicimentoRps.findOne({
@@ -78,6 +78,32 @@ export class EstabelecimentoRepositorio {
             vagas.disponiveis_carros -= 1;
             await this.estabelicimentoRps.save(vagas);
 
+        }
+    }
+
+    async registar_saida(tipo: string, id: number){
+
+        console.log(id)
+
+        const estabelecimento = await this.findOne(+id)
+
+        if(!estabelecimento) {
+            return 'Estabelecimento não encontrado'
+        }
+
+        if(tipo == 'Moto'){
+
+            if(estabelecimento.disponiveis_motos < estabelecimento.qtd_vagas_motos){
+                estabelecimento.disponiveis_motos += 1;
+                return await this.estabelicimentoRps.save(estabelecimento);
+            }
+            return;
+        } else if(tipo == 'Carro'){
+            if(estabelecimento.disponiveis_carros < estabelecimento.qtd_vagas_carros){
+                estabelecimento.disponiveis_carros += 1;
+                return await this.estabelicimentoRps.save(estabelecimento);
+            }
+            return;
         }
 
 

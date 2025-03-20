@@ -19,8 +19,8 @@ export class VeiculoORM {
     @Column()
     tipo: 'carro' | 'moto'
 
-    @ManyToOne(() => EstabelecimentoORM, (estabelecimento) => estabelecimento.id)
-    estabelecimentoId: EstabelecimentoORM
+    @ManyToOne(() => EstabelecimentoORM, estabelecimento => estabelecimento?.id)
+    estabelecimento: EstabelecimentoORM
 
     @Column({name: "created_at", type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
     createdAt: Date

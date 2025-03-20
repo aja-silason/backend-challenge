@@ -30,18 +30,18 @@ export class EntradaVeiculoController {
       throw new NotFoundException(`carro com o id ${id} não encontrado`)
     }
     
-    const { id: id_veiculo, marca, tipo, estabelecimentoId} = carroExiste
+    const { id: id_veiculo, marca, tipo: tipodeVeiculo} = carroExiste
 
     const listaDeCarrosParaRelatorio = await this.relatorio.find();
     
-    const temEntrada = listaDeCarrosParaRelatorio?.filter((item) => item?.id_veiculo == id_veiculo)[0]
+    const temEntrada = listaDeCarrosParaRelatorio?.filter((item) => item?.id_veiculo == id_veiculo && item?.hora_saida == null)[0]
 
     if(temEntrada){
       throw new BadRequestException(`carro com o id ${id} já está estacionado`)
     }
 
 
-    this.estaelecimento.registar_entrada(tipo, +estabelecimentoId);
+    this.estaelecimento.registar_entrada(tipodeVeiculo);
 
     const newValues: EntradaSaidaProps = {veiculo: marca, id_veiculo: id_veiculo}
     
