@@ -4,8 +4,9 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 export type EntradaSaidaProps = {
     id?: string,
     veiculo: string,
-    hora_entrada: string,
-    hora_saida: string,
+    hora_entrada?: Date,
+    hora_saida?: Date,
+    id_veiculo: number
 }
 
 export class RelatorioEntradaSaida {
@@ -15,12 +16,11 @@ export class RelatorioEntradaSaida {
     public static create(props: EntradaSaidaProps, id?: string){
 
         const incommingDatas: EntradaSaidaProps = {
-            veiculo: props.veiculo,
-            hora_entrada: props.hora_entrada,
-            hora_saida: props.hora_saida
+            veiculo: props?.veiculo,
+            id_veiculo: props?.id_veiculo
           }
     
-          const isValidate: Array<keyof EntradaSaidaProps> = ["veiculo", "hora_entrada", "hora_entrada"];
+          const isValidate: Array<keyof EntradaSaidaProps> = ["veiculo"];
     
           for(const key of isValidate){
               const value = incommingDatas[key];
@@ -31,9 +31,10 @@ export class RelatorioEntradaSaida {
 
 
         return new RelatorioEntradaSaida({
-            veiculo: props.veiculo,
-            hora_entrada: props.hora_entrada,
-            hora_saida: props.hora_saida
+            veiculo: props?.veiculo,
+            id_veiculo: props?.id_veiculo,
+            hora_entrada: new Date(),
+            hora_saida: props?.hora_saida
         });
     }
 
@@ -44,11 +45,15 @@ export class RelatorioEntradaSaida {
     public get veiculo(){
         return this.props.veiculo;
     }
+    public get hora_saida(){
+        return this.props.hora_saida;
+    }
     public get hora_entrada(){
         return this.props.hora_entrada;
     }
-    public get hora_saida(){
-        return this.props.hora_saida;
+
+    public get id_veiculo(){
+        return this.props.id_veiculo;
     }
 
     public get with(){

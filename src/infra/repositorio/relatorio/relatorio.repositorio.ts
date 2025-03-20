@@ -5,7 +5,7 @@ import { RelatorioORM } from "src/dominio/relatorio/model/relatorio.model";
 import { Repository } from "typeorm";
 
 @Injectable()
-export class Relatorioepositorio {
+export class RelatorioRepositorio {
 
     constructor(
         @InjectRepository(RelatorioORM)

@@ -11,11 +11,16 @@ export class CriarRelatorioDTO {
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    hora_entrada: Date
+    hora_entrada?: Date
 
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    hora_saida: Date
+    hora_saida?: Date
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    id_veiculo?: number
     
 }
