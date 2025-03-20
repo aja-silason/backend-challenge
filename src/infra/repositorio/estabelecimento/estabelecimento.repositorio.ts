@@ -3,7 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { ActualizarEstabelecimentoDTO } from "src/dominio/estabelecimento/model/dto/actualizar-estabelecimentoDTO";
 import { CriarEstabelecimentoDTO } from "src/dominio/estabelecimento/model/dto/Criar-estabelecimentoDTO";
 import { EstabelecimentoORM } from "src/dominio/estabelecimento/model/estabelecimento.model";
-import { Repository } from "typeorm";
+import { MoreThan, Repository } from "typeorm";
 
 @Injectable()
 export class EstabelecimentoRepositorio {
@@ -14,6 +14,8 @@ export class EstabelecimentoRepositorio {
     ){}
 
     async create(estabelecimento: CriarEstabelecimentoDTO) {
+
+        console.log("ORM", estabelecimento)
 
         return await this.estabelicimentoRps.save(this.estabelicimentoRps.create(estabelecimento));
     }
@@ -30,6 +32,10 @@ export class EstabelecimentoRepositorio {
         }
     }
 
+    async findOne(id: number  | any){
+        return await this.estabelicimentoRps.findOne({where: {id: id}});
+    }
+
     async update(id: number, estabelecimentoUpdated: ActualizarEstabelecimentoDTO){
         const estabelecimento = await this.findOneByOrFail(id);
         estabelecimento.updatedAt = new Date();
@@ -43,6 +49,38 @@ export class EstabelecimentoRepositorio {
             throw new NotFoundException(`id ${id} não encontrado`);
         }
         await this.estabelicimentoRps.delete(id);
+    }
+
+
+    async registar_entrada(tipo: string, id: number){
+
+        if(tipo == 'Moto'){
+            const vagas = await this.estabelicimentoRps.findOne({
+                where: {disponiveis_motos: MoreThan(0)}
+            });
+
+            if(!vagas) {
+                return 'Sem vagas para mais moto'
+            }
+
+            vagas.disponiveis_motos -= 1;
+            await this.estabelicimentoRps.save(vagas);
+
+        } else if(tipo == 'Carro'){
+            const vagas = await this.estabelicimentoRps.findOne({
+                where: {disponiveis_motos: MoreThan(0)}
+            });
+
+            if(!vagas) {
+                return 'Sem vagas para mais carros'
+            }
+
+            vagas.disponiveis_carros -= 1;
+            await this.estabelicimentoRps.save(vagas);
+
+        }
+
+
     }
 
 }

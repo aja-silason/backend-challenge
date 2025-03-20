@@ -6,7 +6,9 @@ export type EstabelecimentoProps = {
     nome: string,
     telefone: number,
     qtd_vagas_carros: number,
-    qtd_vagas_motos: number
+    qtd_vagas_motos: number,
+    disponiveis_motos?: number,
+    disponiveis_carros?: number,
 }
 
 export class Estabelecimento {
@@ -19,6 +21,8 @@ export class Estabelecimento {
             nome: props.nome,
             qtd_vagas_carros: props.qtd_vagas_carros,
             qtd_vagas_motos: props.qtd_vagas_motos,
+            disponiveis_carros: props.qtd_vagas_carros,
+            disponiveis_motos: props.qtd_vagas_motos,
             telefone: props.telefone
           }
     
@@ -36,7 +40,9 @@ export class Estabelecimento {
             nome: props.nome,
             telefone: props.telefone,
             qtd_vagas_carros: props.qtd_vagas_carros,
-            qtd_vagas_motos: props.qtd_vagas_motos
+            qtd_vagas_motos: props.qtd_vagas_motos,
+            disponiveis_carros: props.qtd_vagas_carros,
+            disponiveis_motos: props.qtd_vagas_motos,
         });
     }
 
@@ -55,6 +61,13 @@ export class Estabelecimento {
     }
     public get qtd_vagas_motos(){
         return this.props.qtd_vagas_motos;
+    }
+
+    public get disponiveis_motos(){
+        return this.props.disponiveis_motos;
+    }
+    public get disponiveis_carros(){
+        return this.props.disponiveis_carros;
     }
 
     public get with(){

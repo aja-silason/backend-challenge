@@ -18,6 +18,12 @@ export class EstabelecimentoORM {
     @Column({type: 'int'})
     qtd_vagas_carros: number
 
+    @Column({type: 'int'})
+    disponiveis_carros: number
+
+    @Column({type: 'int'})
+    disponiveis_motos: number
+
     @Column({name: "created_at", type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
     createdAt: Date
 

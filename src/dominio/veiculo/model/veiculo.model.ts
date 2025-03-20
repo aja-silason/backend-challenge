@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+import { EstabelecimentoORM } from "src/dominio/estabelecimento/model/estabelecimento.model";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 
 @Entity({name: 'veiculo'})
 export class VeiculoORM {
@@ -17,6 +18,9 @@ export class VeiculoORM {
     
     @Column()
     tipo: 'carro' | 'moto'
+
+    @ManyToOne(() => EstabelecimentoORM, (estabelecimento) => estabelecimento.id)
+    estabelecimentoId: EstabelecimentoORM
 
     @Column({name: "created_at", type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
     createdAt: Date

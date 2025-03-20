@@ -15,7 +15,7 @@ export class SaidaVeiculoController {
   async create(@Param('id') id: number, @Param('value') value: number){
 
 
-    if(+value !== 1) {
+    if(+value !== 2) {
       throw new BadRequestException(`${value} precisa ser 2 para registrar saída`);
     }
 

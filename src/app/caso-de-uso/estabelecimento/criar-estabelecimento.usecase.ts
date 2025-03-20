@@ -1,4 +1,5 @@
 import { Estabelecimento, EstabelecimentoProps } from 'src/dominio/estabelecimento/entidade/estabelecimento.entidade';
+import { EstabelecimentoORM } from 'src/dominio/estabelecimento/model/estabelecimento.model';
 import { EstabelecimentoRepositorio } from 'src/infra/repositorio/estabelecimento/estabelecimento.repositorio';
 
 export class CriarEstabelecimento{
@@ -19,7 +20,8 @@ export class CriarEstabelecimento{
       const aStabelecimento = await this.estabelecimentoRps?.create(estabelecimento);  
 
       return aStabelecimento;
-  }
+
+    }
 
 
 }

@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsIn, IsNotEmpty, isNotEmpty, IsNumber, IsString } from "class-validator";
+import { EstabelecimentoORM } from "src/dominio/estabelecimento/model/estabelecimento.model";
 
 export class CriarVeiculoDTO {
     
@@ -22,6 +23,11 @@ export class CriarVeiculoDTO {
     @IsNumber()
     @IsNotEmpty()
     placa: number
+
+    @ApiProperty()
+    @IsNumber()
+    @IsNotEmpty()
+    estabelecimentoId: EstabelecimentoORM
 
     @ApiProperty()
     @IsString()

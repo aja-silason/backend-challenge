@@ -1,4 +1,5 @@
 import { BadRequestException } from "@nestjs/common";
+import { EstabelecimentoORM } from "src/dominio/estabelecimento/model/estabelecimento.model";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 export type VeiculoProps = {
@@ -7,7 +8,8 @@ export type VeiculoProps = {
     modelo: string,
     cor: string,
     placa: number
-    tipo: string
+    tipo: string,
+    estabelecimentoId: EstabelecimentoORM
 }
 
 export class Veiculo {
@@ -21,7 +23,8 @@ export class Veiculo {
             modelo: props.modelo,
             cor: props.cor,
             placa: props.placa,
-            tipo: props.tipo
+            tipo: props.tipo,
+            estabelecimentoId: props?.estabelecimentoId
           }
     
           const isValidate: Array<keyof VeiculoProps> = ["marca", "modelo", "cor", "placa", "tipo"];
@@ -39,7 +42,8 @@ export class Veiculo {
             modelo: props.modelo,
             cor: props.cor,
             placa: props.placa,
-            tipo: props.tipo
+            tipo: props.tipo,
+            estabelecimentoId: props.estabelecimentoId
         });
     }
 
@@ -63,6 +67,11 @@ export class Veiculo {
     public get tipo(){
         return this.props.tipo;
     }
+
+    public get estabelecimentoId(){
+        return this.props.estabelecimentoId;
+    }
+    
 
     public get with(){
         return this.props;
