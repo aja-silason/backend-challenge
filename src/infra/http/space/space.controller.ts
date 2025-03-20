@@ -36,9 +36,8 @@ export class SpaceController {
   }
 
   @Put(':id')
-  @HttpCode(HttpStatus.NO_CONTENT)
   @ApiParam({name: 'id', type: 'number'})
-  async update(@Param() id: number, @Body() body: UpdateSpaceDTO){  
+  async update(@Param('id') id: number, @Body() body: UpdateSpaceDTO){  
     await this.spaceService.update(id, body);
   }
   

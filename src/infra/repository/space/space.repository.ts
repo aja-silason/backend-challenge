@@ -36,7 +36,7 @@ export class TypeORMSpaceRepository implements SpaceRepository {
         const space = await this.spaceRps.findOne({ where: { id: id } });
 
         if (!space) {
-            throw new NotFoundException('space with id ${id} not found ');
+            throw new NotFoundException(`space with id ${id} not found`);
         }
 
         return space;

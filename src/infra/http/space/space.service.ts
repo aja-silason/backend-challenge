@@ -50,8 +50,6 @@ export class SpaceService {
 
         try {
 
-            //const  a = await this.finOne(+id);
-
             await this.deleteUseCase.execute(+id);
             
         } catch (error) {
