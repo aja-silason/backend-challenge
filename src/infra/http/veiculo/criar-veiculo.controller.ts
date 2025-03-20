@@ -2,7 +2,7 @@ import { Body, Controller, HttpCode, HttpStatus, NotFoundException, Post } from 
 import { ApiTags } from "@nestjs/swagger";
 import { Veiculo } from "src/dominio/veiculo/entidade/veiculo.entidade";
 import { CriarVeiculoDTO } from "src/dominio/veiculo/model/dto/Criar-veiculoDTO";
-import { EstabelecimentoRepositorio } from "src/infra/repositorio/estabelecimento/estabelecimento.repositorio";
+import { EstabelecimentoRepositorio } from "src/infra/repositorio/estabelecimento/space.repository";
 import { VeiculoRepositorio } from "src/infra/repositorio/veiculo/veiculo.repositorio";
 
 @Controller('veiculo')
@@ -14,6 +14,8 @@ export class CriarVeiculoController {
   @HttpCode(HttpStatus.NO_CONTENT)
   async create(@Body() body: CriarVeiculoDTO){
 
+    /*
+
     const {estabelecimentoId} = body;
 
     const estabelecimentoExiste = await this.estabelecimentoRps.findOne(estabelecimentoId);
@@ -24,7 +26,7 @@ export class CriarVeiculoController {
   
     const veiculo = Veiculo?.create(body);    
   
-    await this.appService.create(veiculo);
+    await this.appService.create(veiculo);*/
 
   }
   

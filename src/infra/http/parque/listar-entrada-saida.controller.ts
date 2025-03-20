@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from "@nestjs/common";
 import { ApiParam, ApiTags } from "@nestjs/swagger";
-import { ListarEstabelecimento } from "src/app/caso-de-uso/estabelecimento/listar-estabelecimento.usecase";
-import { EstabelecimentoRepositorio } from "src/infra/repositorio/estabelecimento/estabelecimento.repositorio";
+import { ListarEstabelecimento } from "src/app/usecase/space/listar-estabelecimento.usecase";
+import { EstabelecimentoRepositorio } from "src/infra/repositorio/estabelecimento/space.repository";
 import { RelatorioRepositorio } from "src/infra/repositorio/relatorio/relatorio.repositorio";
 
 @Controller('parque/relatorio')
@@ -9,12 +9,14 @@ import { RelatorioRepositorio } from "src/infra/repositorio/relatorio/relatorio.
 export class ListarEntradaSaidaController {
   constructor(private readonly appService: RelatorioRepositorio) {}
 
+
   @Get()
    async find(){
      
     const veiculosNoParque = await this.appService.entrada_saida();
 
     
+
     return this.present(veiculosNoParque);
 
   }

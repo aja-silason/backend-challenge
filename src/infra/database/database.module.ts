@@ -1,11 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { EstabelecimentoORM } from '../../dominio/estabelecimento/model/estabelecimento.model';
+import { EstabelecimentoORM } from '../../dominio/space/model/estabelecimento.model';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { EstabelecimentoModule } from '../module/estabelecimento/estabelecimento.module';
-import { VeiculoORM } from 'src/dominio/veiculo/model/veiculo.model';
+import { SpaceModule } from '../module/estabelecimento/estabelecimento.module';
 import { VeiculoModule } from '../module/veiculo/veiculo.module';
-import { RelatorioORM } from 'src/dominio/relatorio/model/relatorio.model';
 import { EntradaSaidaModule } from '../module/relatorio/entrada-saida.module';
 
 @Module({
@@ -20,11 +18,11 @@ import { EntradaSaidaModule } from '../module/relatorio/entrada-saida.module';
                 username: configService.get('DATABASE_USER', 'root'),
                 password: configService.get('DATABASE_PASSWORD', '123'),
                 database: configService.get('DATABASE_DB', 'estacionamento'),
-                entities: [EstabelecimentoORM, VeiculoORM, RelatorioORM],
+                entities: [EstabelecimentoORM],
                 synchronize: true,
             })
         }),
-        EstabelecimentoModule,
+        SpaceModule,
         VeiculoModule,
         EntradaSaidaModule,
     ]
