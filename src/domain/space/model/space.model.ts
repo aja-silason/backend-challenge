@@ -13,24 +13,24 @@ export class SpaceModel {
     telephone: number
 
     @Column({type: 'int'})
-    qtd_car_slot?: number
+    qtd_car_slot: number
     
     @Column({type: 'int'})
-    qtd_motorcycle_slot?: number
+    qtd_motorcycle_slot: number
 
     @Column({type: 'int'})
-    slot_car?: number
+    slot_car: number
 
     @Column({type: 'int'})
-    slot_motorcycle?: number
+    slot_motorcycle: number
 
     @OneToMany(() => SpaceModel, vehicle => vehicle.vehicles)
-    vehicles?: SpaceModel[]
+    vehicles: SpaceModel[]
 
     @Column({name: "created_at", type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
-    createdAt?: Date
+    createdAt: Date
 
     @Column({name: "updated_at", type: 'datetime', nullable: true, default: null})
-    updatedAt?: Date
+    updatedAt: Date
 
 }
