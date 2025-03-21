@@ -5,6 +5,7 @@ import { SpaceModule } from './http/space/space.module';
 import { AppController } from './http/app/app.controller';
 import { AppService } from 'src/app/usecase/app.service';
 import { VehicleModule } from './http/vehicle/vehicle.module';
+import { ReportModule } from './http/report/report.module';
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { VehicleModule } from './http/vehicle/vehicle.module';
     DatabaseModule,
     
     SpaceModule,
-    VehicleModule
+    VehicleModule,
+    ReportModule
 
   ],
   controllers: [AppController],

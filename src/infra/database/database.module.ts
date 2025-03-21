@@ -5,6 +5,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SpaceModule } from '../http/space/space.module';
 import { VehicleModel } from 'src/domain/vehicle/model/vehicle.model';
 import { VehicleModule } from '../http/vehicle/vehicle.module';
+import { ReportModel } from 'src/domain/report/model/report.model';
+import { ReportModule } from '../http/report/report.module';
 
 @Module({
     imports: [
@@ -18,12 +20,13 @@ import { VehicleModule } from '../http/vehicle/vehicle.module';
                 username: configService.get('DATABASE_USER', 'root'),
                 password: configService.get('DATABASE_PASSWORD', '123'),
                 database: configService.get('DATABASE_DB', 'estacionamento'),
-                entities: [SpaceModel, VehicleModel],
+                entities: [SpaceModel, VehicleModel, ReportModel],
                 synchronize: true,
             })
         }),
         SpaceModule,
-        VehicleModule
+        VehicleModule,
+        ReportModule
     ]
 })
 export class DatabaseModule {}

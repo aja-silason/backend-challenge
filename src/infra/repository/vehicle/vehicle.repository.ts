@@ -39,9 +39,6 @@ export class TypeORMVehicleRepository implements VehicleRepository {
 
     }
 
-
-
-
     async update(id: number, newSpace: UpdateVehicleDTO): Promise<void> {
 
         const vehicle = await this.findOne(+id);

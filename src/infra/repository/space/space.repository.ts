@@ -59,7 +59,7 @@ export class TypeORMSpaceRepository implements SpaceRepository {
         
     }
 
-    async register_input_activity_in_slot(typeOfVehicle: string) {
+    async register_input_activity_in_slot(typeOfVehicle: string): Promise<void>{
         
         if(typeOfVehicle?.toLowerCase() == 'moto'){
 
@@ -87,7 +87,7 @@ export class TypeORMSpaceRepository implements SpaceRepository {
     }
 
 
-    async register_output_activity_in_slot(typeOfVehicle: string, parkId: number){
+    async register_output_activity_in_slot(typeOfVehicle: string, parkId: number): Promise<void>{
 
         const space = await this.spaceRps.findOne({where: {id: parkId}});
 
@@ -98,13 +98,13 @@ export class TypeORMSpaceRepository implements SpaceRepository {
         if(typeOfVehicle?.toLowerCase() == "moto"){
             if(space.slot_motorcycle < space.qtd_motorcycle_slot){
                 space.slot_motorcycle += 1;
-                return await this.spaceRps.save(space);
+                await this.spaceRps.save(space);
             }
             return;
         } else if (typeOfVehicle?.toLowerCase() == "carro"){
             if(space.slot_car < space.qtd_car_slot){
                 space.slot_car += 1;
-                return await this.spaceRps.save(space);
+                await this.spaceRps.save(space);
             }
         }
 
