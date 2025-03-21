@@ -34,11 +34,22 @@ export class TypeORMReportRepository implements ReportRepository {
 
     }
 
-/*    async show_in_and_out_per_time(hour: number): Promise<ReportEntity> {
+    async show_in_and_out_per_time(hour: number): Promise<any> {
 
-        const entrance_per_hour = await this.reportRps.createQueryBuilder('')
+        const entrance_per_hour = await this.reportRps.createQueryBuilder('report')
+        .where('report.in_time is not null')
+        .getCount();
 
-    }*/
+        const out_per_hour = await this.reportRps.createQueryBuilder('report')
+        .where('report.out_time int not null')
+        .getCount()
+
+        return {
+            entrance_per_hour,
+            out_per_hour
+        }
+
+    }
 
     async show_in_and_out(): Promise<any[]> {
         return await this.reportRps.find();
