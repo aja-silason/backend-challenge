@@ -24,7 +24,7 @@ export class TypeORMVehicleRepository implements VehicleRepository {
 
     public async findOne(id: number): Promise<VehicleModel | null | any> {
     
-        const vehicle = await this.vehicleRps.findOne({ where: { id: id } });
+        const vehicle = await this.vehicleRps.findOne({ where: { id: id }, relations: ['spaceId'] });
     
         if (!vehicle) {
             throw new NotFoundException(`vehicle with id ${id} not found`);

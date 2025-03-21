@@ -8,7 +8,8 @@ export type VehicleProps = {
     color: string,
     plate: number,
     type: string,
-    spaceId: SpaceModel
+    spaceId: SpaceModel,
+    spaceIdId?: number
 }
 
 export class VehicleEntity {
@@ -60,6 +61,10 @@ export class VehicleEntity {
 
     public get spaceId(){
         return this.props.spaceId;
+    }
+
+    public get spaceIdId(){
+        return this.props.spaceIdId;
     }
 
     public get type(){

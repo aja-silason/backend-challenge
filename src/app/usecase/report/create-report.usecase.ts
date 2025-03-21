@@ -25,9 +25,15 @@ export class CreateVehicleEntraceUseCase {
 
         const dataVehicle = {
             brand: hasvehicle?.brand,
-            type: hasvehicle?.type
+            type: hasvehicle?.type,
+            spaceId: hasvehicle?.spaceId?.id
         }
 
+        
+        const aa = await this.spaceRepository.findOne(dataVehicle.spaceId)
+        
+        console.log(aa, dataVehicle.spaceId)
+        
         const hasVehicleEntrance = await this.repository?.findAll();
         const filterReport = hasVehicleEntrance?.filter((item) => item?.vehicle_id == vehicleId && item?.out_time == null)[0];
 
@@ -35,12 +41,10 @@ export class CreateVehicleEntraceUseCase {
             throw new BadRequestException(`vehicle with id ${vehicleId} is already on te park`);
         }
 
-        const a = await this.spaceRepository.register_input_activity_in_slot(dataVehicle.type);
 
+        await this.spaceRepository.register_input_activity_in_slot(dataVehicle.type);
 
         const newValue: any = {vehicle: dataVehicle?.brand, vehicle_id: vehicleId}
-
-        console.log("Use case new value", newValue)
         
         const entrance = ReportEntity.create(newValue);
         

@@ -1,3 +1,5 @@
+import { query } from "express";
+import { VehicleModel } from "src/domain/vehicle/model/vehicle.model";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({name: 'space'})
@@ -24,8 +26,8 @@ export class SpaceModel {
     @Column({type: 'int'})
     slot_motorcycle: number
 
-    @OneToMany(() => SpaceModel, vehicle => vehicle.vehicles)
-    vehicles: SpaceModel[]
+    @OneToMany(() => VehicleModel, vehicle => vehicle.spaceId)
+    vehicles: VehicleModel[]
 
     @Column({name: "created_at", type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
     createdAt: Date

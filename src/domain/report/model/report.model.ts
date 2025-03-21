@@ -18,9 +18,6 @@ export class ReportModel {
     @Column()
     vehicle_id: number
 
-    @Column({name: 'updated_at', type: 'timestamp', nullable: true, default: null})
-    updatedAt: Date
-
     @Column({name: 'created_at', type: 'timestamp', nullable: true, default: () => 'CURRENT_TIMESTAMP'})
     createdAt: Date
 

@@ -33,7 +33,7 @@ export class TypeORMSpaceRepository implements SpaceRepository {
 
     public async findOne(id: number): Promise<SpaceModel | null | any> {
 
-        const space = await this.spaceRps.findOne({ where: { id: id } });
+        const space = await this.spaceRps.findOne({ where: { id: id }, relations: ['vehicles'] });
 
         if (!space) {
             throw new NotFoundException(`space with id ${id} not found`);
@@ -75,6 +75,7 @@ export class TypeORMSpaceRepository implements SpaceRepository {
         } else if (typeOfVehicle?.toLowerCase() == 'carro'){
 
             const slots = await this.spaceRps.findOne({where: {slot_car: MoreThan(0)}});
+
             if(!slots){
                 throw new NotFoundException('Whithou slots available for cars');
             }

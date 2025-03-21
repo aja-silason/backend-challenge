@@ -1,5 +1,5 @@
 import { SpaceModel } from "src/domain/space/model/space.model";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({name: 'vehicle'})
 export class VehicleModel {
@@ -22,7 +22,8 @@ export class VehicleModel {
     @Column()
     type: string
 
-    @ManyToOne(() => SpaceModel, space => space?.id)
+    @ManyToOne(() => SpaceModel, space => space?.vehicles)
+    @JoinColumn({name: 'spaceId'})
     spaceId?: SpaceModel
 
     @Column({name: 'created_at', type: 'datetime', default: () => 'CURRENT_TIMESTAMP'})

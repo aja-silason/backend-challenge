@@ -21,7 +21,7 @@ export class CreateSpaceUsecase{
       const aStabelecimento = await this.repository?.create(space);  
 
       return aStabelecimento;
-
+ 
     }
 
 
