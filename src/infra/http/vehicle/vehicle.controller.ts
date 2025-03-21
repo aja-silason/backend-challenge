@@ -13,6 +13,7 @@ export class VehicleController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async create(@Body() body: CreateVehicleDTO){
+    body.type?.toLowerCase();
     const vehicle = VehicleEntity?.create(body);
     await this.vehicleService. create(vehicle);
   }
@@ -29,12 +30,11 @@ export class VehicleController {
       return await this.vehicleService.finOne(+id);    
   }
 
-  /*@Delete(':id')
+  @Delete(':id')
   @ApiParam({name: 'id', type: 'number'})
   async delete(@Param('id') id: number){
-
-      await this.vehicleService.create(id);
-  }*/
+      await this.vehicleService.delete(+id);
+  }
 
   
   @Put(':id')

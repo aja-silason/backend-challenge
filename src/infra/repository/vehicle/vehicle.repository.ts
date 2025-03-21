@@ -18,7 +18,6 @@ export class TypeORMVehicleRepository implements VehicleRepository {
     public async create(input: VehicleModel): Promise<void> {
 
         const space = this.vehicleRps.create(input)
-        console.log(space)
         await this.vehicleRps.save(space)
 
     }

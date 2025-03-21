@@ -1,5 +1,4 @@
 import { BadRequestException } from "@nestjs/common";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 export type SpaceProps = {
     id?: number,
