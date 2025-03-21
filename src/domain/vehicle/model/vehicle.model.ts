@@ -20,16 +20,16 @@ export class VehicleModel {
     plate: number
 
     @Column()
-    type: 'carro' | 'moto' 
+    type: string
 
     @ManyToOne(() => SpaceModel, space => space?.id)
-    space: SpaceModel
+    space?: SpaceModel
 
     @Column({name: 'created_at', type: 'datetime', default: () => 'CURRENT_TIMESTAMP'})
-    createdAt: Date
+    createdAt?: Date
 
     @Column({name: 'updated_at', type: 'datetime', nullable: true, default: null})
-    updatedAt: Date
+    updatedAt?: Date
 
 
 }

@@ -1,28 +1,32 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { SpaceRepository } from "src/domain/space/protocol/space-repository";
 import { Repository } from "typeorm";
+import { SpaceEntity } from "src/domain/space/space/space";
 import { InjectRepository } from "@nestjs/typeorm";
 import { SpaceModel } from "src/domain/space/model/space.model";
 import { UpdateSpaceDTO } from "src/domain/space/model/dto/update-space.DTO";
+import { VehicleRepository } from "src/domain/vehicle/protocol/vehicle.repository";
+import { VehicleModel } from "src/domain/vehicle/model/vehicle.model";
+import { CreateVehicleDTO } from "src/domain/vehicle/model/dto/create-vehicle.DTO";
 
 
 @Injectable()
-export class TypeORMSpaceRepository implements SpaceRepository {
+export class TypeORMVehicleRepository implements VehicleRepository {
 
     constructor(
-        @InjectRepository(SpaceModel)
-        private readonly spaceRps: Repository<SpaceModel>
+        @InjectRepository(VehicleModel)
+        private readonly vehicleRps: Repository<VehicleModel>
     ) { }
 
 
-    public async create(input: SpaceModel): Promise<void> {
+    public async create(input: VehicleModel): Promise<void> {
 
-        const space = this.spaceRps.create(input)
-        await this.spaceRps.save(space)
+        const space = this.vehicleRps.create(input)
+        await this.vehicleRps.save(space)
 
     }
 
-
+/*
     public async findAll(): Promise<any[]> {
 
         return await this.spaceRps.find();
@@ -60,6 +64,6 @@ export class TypeORMSpaceRepository implements SpaceRepository {
 
 
 
-
+*/
 
 }

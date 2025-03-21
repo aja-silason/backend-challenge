@@ -3,6 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { SpaceModel } from '../../domain/space/model/space.model';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SpaceModule } from '../http/space/space.module';
+import { VehicleModel } from 'src/domain/vehicle/model/vehicle.model';
+import { VehicleModule } from '../http/vehicle/vehicle.module';
 
 @Module({
     imports: [
@@ -16,11 +18,12 @@ import { SpaceModule } from '../http/space/space.module';
                 username: configService.get('DATABASE_USER', 'root'),
                 password: configService.get('DATABASE_PASSWORD', '123'),
                 database: configService.get('DATABASE_DB', 'estacionamento'),
-                entities: [SpaceModel],
+                entities: [SpaceModel, VehicleModel],
                 synchronize: true,
             })
         }),
         SpaceModule,
+        VehicleModule
     ]
 })
 export class DatabaseModule {}

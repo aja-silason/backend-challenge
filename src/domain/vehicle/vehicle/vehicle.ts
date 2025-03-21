@@ -11,7 +11,7 @@ export type VehicleProps = {
     spaceId: SpaceModel
 }
 
-export class Vehicle {
+export class VehicleEntity {
 
     constructor(private readonly props: VehicleProps){}
 
@@ -19,7 +19,7 @@ export class Vehicle {
 
         this.validate(props);
 
-        return new Vehicle({
+        return new VehicleEntity({
             ...props
         }) 
 
