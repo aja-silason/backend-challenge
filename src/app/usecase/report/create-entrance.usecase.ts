@@ -1,7 +1,6 @@
 import { BadRequestException, Injectable } from "@nestjs/common";
-import { CreateReportDTO } from "src/domain/report/model/dto/create-report.DTO";
 import { ReportRepository } from "src/domain/report/protocol/report.repository";
-import { ReportEntity, ReportProps } from "src/domain/report/report/report";
+import { ReportEntity } from "src/domain/report/report/report";
 import { SpaceRepository } from "src/domain/space/protocol/space-repository";
 import { VehicleRepository } from "src/domain/vehicle/protocol/vehicle.repository";
 
@@ -15,7 +14,7 @@ export class CreateVehicleEntraceUseCase {
         private readonly spaceRepository: SpaceRepository,
     ){}
 
-    public async execute(vehicleId: number, value: number ){
+    public async execute(vehicleId: number, value: number){
         
         if(+value !== 1){
             throw new BadRequestException(`You should be provide 1 to make a entrance not ${value}`);
@@ -30,9 +29,7 @@ export class CreateVehicleEntraceUseCase {
         }
 
         
-        const aa = await this.spaceRepository.findOne(dataVehicle.spaceId)
-        
-        console.log(aa, dataVehicle.spaceId)
+        await this.spaceRepository.findOne(dataVehicle.spaceId)
         
         const hasVehicleEntrance = await this.repository?.findAll();
         const filterReport = hasVehicleEntrance?.filter((item) => item?.vehicle_id == vehicleId && item?.out_time == null)[0];
@@ -49,8 +46,6 @@ export class CreateVehicleEntraceUseCase {
         const entrance = ReportEntity.create(newValue);
         
         await this.repository.create_entrance(entrance);
-
-        
 
 
     }

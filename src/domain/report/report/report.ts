@@ -1,7 +1,7 @@
 import { BadRequestException } from "@nestjs/common";
 
 export type ReportProps = {
-    id?: string,
+    id?: number,
     vehicle: string,
     vehicle_id: number,
     in_time?: Date,

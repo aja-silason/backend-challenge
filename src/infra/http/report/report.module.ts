@@ -3,7 +3,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { ReportModel } from "src/domain/report/model/report.model";
 import { ReportController } from "./report.controller";
 import { ReportService } from "./report.service";
-import { CreateVehicleEntraceUseCase } from "src/app/usecase/report/create-report.usecase";
+import { CreateVehicleEntraceUseCase } from "src/app/usecase/report/create-entrance.usecase";
 import { ReportRepository } from "src/domain/report/protocol/report.repository";
 import { TypeORMReportRepository } from "src/infra/repository/report/report.repository";
 import { VehicleRepository } from "src/domain/vehicle/protocol/vehicle.repository";
@@ -12,6 +12,7 @@ import { TypeORMSpaceRepository } from "src/infra/repository/space/space.reposit
 import { SpaceRepository } from "src/domain/space/protocol/space-repository";
 import { VehicleModel } from "src/domain/vehicle/model/vehicle.model";
 import { SpaceModel } from "src/domain/space/model/space.model";
+import { CreateVehicleOutUseCase } from "src/app/usecase/report/create-out.usecase";
 
 @Module({
 
@@ -22,6 +23,7 @@ import { SpaceModel } from "src/domain/space/model/space.model";
     providers: [
         ReportService,
         CreateVehicleEntraceUseCase,
+        CreateVehicleOutUseCase,
         {
             provide: ReportRepository,
             useClass: TypeORMReportRepository
