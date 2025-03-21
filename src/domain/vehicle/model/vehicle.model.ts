@@ -23,7 +23,7 @@ export class VehicleModel {
     type: string
 
     @ManyToOne(() => SpaceModel, space => space?.id)
-    space?: SpaceModel
+    spaceId?: SpaceModel
 
     @Column({name: 'created_at', type: 'datetime', default: () => 'CURRENT_TIMESTAMP'})
     createdAt?: Date

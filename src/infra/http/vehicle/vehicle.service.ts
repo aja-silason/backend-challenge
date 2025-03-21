@@ -1,19 +1,21 @@
 import { HttpException, Injectable } from "@nestjs/common";
 import { CreateVehicleUsecase } from "src/app/usecase/vehicle/create.usecase";
+import { DeleteVehicleUsecase } from "src/app/usecase/vehicle/delete.usecase";
+import { FindAllVehicleUseCase } from "src/app/usecase/vehicle/findAll.usecase";
+import { FindOneVehicleUseCase } from "src/app/usecase/vehicle/findOne.usecase";
+import { UpdateVehicleUseCase } from "src/app/usecase/vehicle/update.usecase";
 import { CreateVehicleDTO } from "src/domain/vehicle/model/dto/create-vehicle.DTO";
+import { UpdateVehicleDTO } from "src/domain/vehicle/model/dto/update-vehicle.DTO copy";
 
 @Injectable()
 export class VehicleService {
 
     public constructor(
         private readonly createUseCase: CreateVehicleUsecase,
-        
-        /*
-        private readonly findAllUseCase: FindAllSpaceUseCase,
-        private readonly findOneUseCase: FindOneSpaceUseCase,
-        private readonly deleteUseCase: DeleteSpaceUsecase,
-        private readonly updateUseCase: UpdateSpaceUseCase,
-        */
+        private readonly findAllUseCase: FindAllVehicleUseCase,
+        private readonly findOneUseCase: FindOneVehicleUseCase,
+        private readonly deleteUseCase: DeleteVehicleUsecase,
+        private readonly updateUseCase: UpdateVehicleUseCase,
     ){}
 
     public async create(input: CreateVehicleDTO){
@@ -23,8 +25,6 @@ export class VehicleService {
             throw new HttpException(error.message, error.statusCode);
         }
     }
-
-    /*
 
     public async findAll() {
         try {
@@ -46,8 +46,20 @@ export class VehicleService {
         }
     }
 
-    public async delete(id: number){
 
+    public async update(id: number, newVehicle: UpdateVehicleDTO){
+
+        try {
+            
+            await this.updateUseCase.execute(+id, newVehicle);
+
+        } catch (error) {
+            throw new HttpException(error.message, error.statusCode);
+        }
+
+    }
+
+    public async delete(id: number){
         try {
 
             await this.deleteUseCase.execute(+id);
@@ -57,20 +69,6 @@ export class VehicleService {
         }
 
     }
-
-    public async update(id: number, newSpace: UpdateSpaceDTO){
-
-        try {
-            
-            await this.updateUseCase.execute(+id, newSpace);
-
-        } catch (error) {
-            throw new HttpException(error.message, error.statusCode);
-        }
-
-    }
-
-    */
 
 
 }

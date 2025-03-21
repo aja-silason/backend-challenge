@@ -7,6 +7,10 @@ import { CreateVehicleUsecase } from "src/app/usecase/vehicle/create.usecase";
 import { TypeORMVehicleRepository } from "src/infra/repository/vehicle/vehicle.repository";
 import { VehicleController } from "./vehicle.controller";
 import { VehicleModel } from "src/domain/vehicle/model/vehicle.model";
+import { DeleteVehicleUsecase } from "src/app/usecase/vehicle/delete.usecase";
+import { FindAllVehicleUseCase } from "src/app/usecase/vehicle/findAll.usecase";
+import { FindOneVehicleUseCase } from "src/app/usecase/vehicle/findOne.usecase";
+import { UpdateVehicleUseCase } from "src/app/usecase/vehicle/update.usecase";
 
 @Module({
     imports: [
@@ -17,11 +21,10 @@ import { VehicleModel } from "src/domain/vehicle/model/vehicle.model";
     providers: [
         VehicleService,
         CreateVehicleUsecase,
-        /*
-        FindAllSpaceUseCase,
-        FindOneSpaceUseCase,
-        DeleteSpaceUsecase,
-        UpdateSpaceUseCase,*/
+        DeleteVehicleUsecase,
+        FindAllVehicleUseCase,
+        FindOneVehicleUseCase,
+        UpdateVehicleUseCase,
         {
             provide: VehicleRepository,
             useClass: TypeORMVehicleRepository 

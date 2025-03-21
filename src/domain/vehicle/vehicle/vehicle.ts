@@ -31,7 +31,7 @@ export class VehicleEntity {
 
         for(const key of isValidate){
             const value = props[key];
-            if(value == null  || value ==undefined){
+            if(value == null  || value == undefined){
                 throw new BadRequestException(`${key} should not be null`);
             }
         }

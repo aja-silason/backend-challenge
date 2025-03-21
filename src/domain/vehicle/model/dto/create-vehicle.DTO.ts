@@ -3,7 +3,7 @@ import { IsIn, IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { SpaceModel } from "src/domain/space/model/space.model";
 
 export class CreateVehicleDTO {
-    
+
     @IsString()
     @ApiProperty()
     @IsNotEmpty()
