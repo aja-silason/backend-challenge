@@ -3,7 +3,7 @@ import { ApiParam, ApiTags } from "@nestjs/swagger";
 import { ReportService } from "./report.service";
 
 
-@Controller('report')
+@Controller('park/entrance')
 @ApiTags('Park')
 export class ReportController {
 

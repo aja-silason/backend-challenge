@@ -3,9 +3,9 @@ import { BadRequestException } from "@nestjs/common";
 export type ReportProps = {
     id?: string,
     vehicle: string,
-    in_time: Date,
-    out_time: Date,
-    vehicle_id: number
+    vehicle_id: number,
+    in_time?: Date,
+    out_time?: Date
 }
 
 
@@ -18,15 +18,17 @@ export class ReportEntity {
         this.validate(props)
 
         return new ReportEntity({
-            ...props,
-            in_time: new Date(),
+            vehicle: props.vehicle,
+            vehicle_id: props.vehicle_id,
+            out_time: props.out_time,
+            in_time: new Date()
         })
 
     }
 
     private static validate(props: ReportProps){
 
-        const isValidate: Array<keyof ReportProps> = ["in_time", "out_time", "vehicle", "vehicle_id"];
+        const isValidate: Array<keyof ReportProps> = ["vehicle", "vehicle_id"];
         for(const key of isValidate){
             const value = props[key];
             if(value == undefined || value == null){

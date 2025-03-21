@@ -35,12 +35,15 @@ export class CreateVehicleEntraceUseCase {
             throw new BadRequestException(`vehicle with id ${vehicleId} is already on te park`);
         }
 
-        await this.spaceRepository.register_input_activity_in_slot(dataVehicle.type);
+        const a = await this.spaceRepository.register_input_activity_in_slot(dataVehicle.type);
+
 
         const newValue: any = {vehicle: dataVehicle?.brand, vehicle_id: vehicleId}
 
+        console.log("Use case new value", newValue)
+        
         const entrance = ReportEntity.create(newValue);
-
+        
         await this.repository.create_entrance(entrance);
 
         

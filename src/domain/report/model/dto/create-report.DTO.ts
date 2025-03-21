@@ -11,12 +11,12 @@ export class CreateReportDTO {
     @ApiProperty()
     @IsNotEmpty()
     @IsString()
-    in_time: Date
+    in_time?: Date
     
     @ApiProperty()
     @IsNotEmpty()
     @IsString()
-    out_time: Date
+    out_time?: Date
 
     @ApiProperty()
     @IsNotEmpty()
