@@ -13,6 +13,8 @@ import { SpaceRepository } from "src/domain/space/protocol/space-repository";
 import { VehicleModel } from "src/domain/vehicle/model/vehicle.model";
 import { SpaceModel } from "src/domain/space/model/space.model";
 import { CreateVehicleOutUseCase } from "src/app/usecase/report/create-out.usecase";
+import { GenereteEntranceAndOutReportUseCase } from "src/app/usecase/report/generate-entrance-report.usecase";
+import { GenereteReporByHourtUseCase } from "src/app/usecase/report/generate-entrance-by-hour-report.usecase";
 
 @Module({
 
@@ -24,6 +26,8 @@ import { CreateVehicleOutUseCase } from "src/app/usecase/report/create-out.useca
         ReportService,
         CreateVehicleEntraceUseCase,
         CreateVehicleOutUseCase,
+        GenereteEntranceAndOutReportUseCase,
+        GenereteReporByHourtUseCase,
         {
             provide: ReportRepository,
             useClass: TypeORMReportRepository
