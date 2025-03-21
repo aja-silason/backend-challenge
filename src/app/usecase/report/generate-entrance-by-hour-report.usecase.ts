@@ -13,7 +13,6 @@ export class GenereteReporByHourtUseCase {
 
     public async execute(hour: number){
 
-
         await this.repository.show_in_and_out_per_time(hour)
     }
 

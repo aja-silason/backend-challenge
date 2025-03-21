@@ -34,7 +34,7 @@ export class TypeORMReportRepository implements ReportRepository {
 
     }
 
-    async show_in_and_out_per_time(hour: number): Promise<any> {
+    async show_in_and_out_per_time(hour: number) : Promise<any>{
 
         
         const entrance_per_hour = await this.reportRps.createQueryBuilder('report')
@@ -62,7 +62,7 @@ export class TypeORMReportRepository implements ReportRepository {
         .getCount();
 
         const leaves = await this.reportRps.createQueryBuilder('report')
-        .where('report.out_time int not null')
+        .where('report.out_time is not null')
         .getCount()
 
         return {
@@ -72,7 +72,8 @@ export class TypeORMReportRepository implements ReportRepository {
 
 
     async findAll(): Promise<any[]>{
-        return await this.reportRps.find()
+        const all = await this.reportRps.find()
+        return all
     }
 
 }

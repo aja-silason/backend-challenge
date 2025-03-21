@@ -12,17 +12,18 @@ export class ReportController {
     ){}
 
     @Get('report')
-    async find(){
+    async findAll(){
         const allReport = await this.reportService.findAll();
 
-        return this.present(allReport);
+        return allReport
+        //return this.present(allReport);
     }
 
     @Get('report/:hour')
     @ApiParam({name: 'hour', type: "number"})
     async findHour(@Param('hour') hour: number ){
 
-        const vehicleThatTravelIntoThePark = await this.reportService.show_in_and_out_per_time(hour);
+        const vehicleThatTravelIntoThePark = await this.reportService.show_in_and_out_per_time(+hour);
 
         console.log("DFGHJ",vehicleThatTravelIntoThePark)
 

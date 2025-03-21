@@ -46,10 +46,10 @@ $ docker exec -it challenge-db mysql -u root -p
 ```
 
 ## Para acesso à URL
-http://localhost:3003/ para developer
+http://localhost:3000/ para developer
 
 ## Para acesso à URL Swagger
-http://localhost:8080/api/docs
+http://localhost:3000/api/docs
   
 
 ### Requisitos do teste "Funcionalidades" 🛠️
