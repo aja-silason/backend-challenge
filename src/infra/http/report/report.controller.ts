@@ -1,4 +1,4 @@
-import { Controller, Get, HttpException, Param, Patch, Post } from "@nestjs/common";
+import { BadRequestException, Controller, Get, HttpException, Param, Patch, Post } from "@nestjs/common";
 import { ApiParam, ApiTags } from "@nestjs/swagger";
 import { ReportService } from "./report.service";
 
@@ -12,11 +12,11 @@ export class ReportController {
     ){}
 
     @Get('report')
-    async findAll(){
-        const allReport = await this.reportService.findAll();
 
-        return allReport
-        //return this.present(allReport);
+    async findAll(){
+
+        return await this.reportService.findAll(); 
+        
     }
 
     @Get('report/:hour')
@@ -25,7 +25,7 @@ export class ReportController {
 
         const vehicleThatTravelIntoThePark = await this.reportService.show_in_and_out_per_time(+hour);
 
-        console.log("DFGHJ",vehicleThatTravelIntoThePark)
+        console.log("DFGHJ",vehicleThatTravelIntoThePark);
 
         this.present(vehicleThatTravelIntoThePark)
     }

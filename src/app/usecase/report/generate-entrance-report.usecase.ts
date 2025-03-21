@@ -11,8 +11,8 @@ export class GenereteEntranceAndOutReportUseCase {
         private readonly repository: ReportRepository,
     ){}
 
-    public async execute(){
-        await this.repository.findAll()
+    public async execute(): Promise<any[]>{
+        return await this.repository.findAll()
     }
 
     

@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CreateReportDTO } from "src/domain/report/model/dto/create-report.DTO";
 import { ReportModel } from "src/domain/report/model/report.model";
@@ -34,23 +34,43 @@ export class TypeORMReportRepository implements ReportRepository {
 
     }
 
-    async show_in_and_out_per_time(hour: number) : Promise<any>{
+    async show_in_and_out_per_time(hora: number) : Promise<any> {
 
-        
-        const entrance_per_hour = await this.reportRps.createQueryBuilder('report')
-        .where('extract(hour from report.in_time) = :hour', {hour})
-        .getCount();
 
-        const out_per_hour = await this.reportRps.createQueryBuilder('report')
-        .where('extract(hour from report.out_time) = :hour', {hour})
-        .getCount()
-        
-        console.log(out_per_hour)
-        
-        return {
-            entrance_per_hour,
-            out_per_hour
+        try {
+            const [entrance_per_hour, out_per_hour] = await Promise.all([
+                this.reportRps.createQueryBuilder('report').where('extract(hour from report.in_time) = :hora', {hora}).getCount(),
+    
+                this.reportRps.createQueryBuilder('report').where('extract(hour from report.out_time) = :hora', {hora}).getCount()
+            ])
+            
+            return {
+                entrance_per_hour,
+                out_per_hour
+            }
+            
+        } catch (error) {
+            throw new BadRequestException(error)
         }
+
+            /*const results = await this.reportRps.createQueryBuilder('report')
+            .select([
+            'extract(hour from report.in_time) AS hora', 
+            'COUNT(report.in_time) AS entrance_count', 
+            'COUNT(report.out_time) AS exit_count'
+            ])
+            .where('extract(hour from report.in_time) = :hour OR extract(hour from report.out_time) = :hora', { hour })
+            .groupBy('hora')
+            .getRawOne(); // Ou getRawMany() caso queira retornar múltiplas horas
+
+        return {
+            entrance_per_hour: results ? results.entrance_count : 0,
+            out_per_hour: results ? results.exit_count : 0,
+        };*/
+
+
+
+
 
 
     }
@@ -71,9 +91,8 @@ export class TypeORMReportRepository implements ReportRepository {
     }}
 
 
-    async findAll(): Promise<any[]>{
-        const all = await this.reportRps.find()
-        return all
+    public async findAll(): Promise<any[]>{
+        return await this.reportRps.find()
     }
 
 }

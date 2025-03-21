@@ -19,7 +19,7 @@ export class VehicleController {
   }
 
   @Get()
-  @HttpCode(201)
+  @HttpCode(200)
     async find(){
       return await this.vehicleService.findAll();
   }
